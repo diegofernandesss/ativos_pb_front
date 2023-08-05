@@ -81,13 +81,11 @@ return(
                     {patentes.length > 0 && 
                         patentes.map((patente, index) => {
                             const color = colors[index % colors.length];
-                            const animation = index % 2 === 0 ? "fade-up-right" : "fade-up-left"
-
                             return (
                                 <div
                                 key={index}
                                 className={`rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
-                                data-aos={animation}
+                                data-aos="fade-up-right"
                                 >
                                 <h1 className="text-base font-bold m-4">{patente.titulo}</h1>
                                 <p className="font-semibold ml-4">Número do pedido</p>
@@ -97,13 +95,6 @@ return(
                         );
                     })}
                 </div>}
-                {removeLoading && patentes.length === 0 && (
-                    <div className="flex justify-center items-center mb-20">
-                        <div className="text-gray-400 font-bold text-xl">
-                            NÃO FOI ENCONTRADO
-                        </div>
-                    </div>
-                )}
                 <div className='flex bg-white rounded-lg font-[Poppins] justify-center items-center m-8'>
                     <button onClick={BackArrow} className='h-12 border-2 border-r-0 border-red-500 px-4 rounded-l-lg hover:bg-red-500 hover:text-white'>
                         <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
