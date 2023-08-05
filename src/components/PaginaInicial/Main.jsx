@@ -47,6 +47,7 @@ return(
                     <h1 className=" px-2 pt-7 pb-8 text-xl mb-1 font-semibold">Pedidos</h1>
                 </div>
 
+                {!removeLoading && <div className='flex justify-center items-center'><Loading /></div>}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:gap-3">
                     {patentes.length > 0 && 
                         patentes.map((patente, index) => {
@@ -66,7 +67,6 @@ return(
                             </div>
                         );
                     })}
-                    {!removeLoading && <Loading />}
                 </div>
             </main>
         </div>
