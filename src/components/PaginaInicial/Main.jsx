@@ -1,11 +1,10 @@
+import { useEffect, useState } from 'react';
 import { Loading } from '../../pages';
-import { api } from '../../services/api'
-import { useEffect, useState } from 'react'
+import { api } from '../../services/api';
 
-export const Main = ({ patente })=>{
+export const Main = ({ patente, removeLoading, setRemoveLoading })=>{
 
 const [patentes, setPatentes] = useState([]);
-const [removeLoading, setRemoveLoading] = useState(false);
 
 const colors = [
     { border: "border-red-500" },
@@ -18,12 +17,11 @@ useEffect(() => {
         setPatentes(resp.data);
         setRemoveLoading(true);
       })
-  }, []);
+  }, [setRemoveLoading]);
 
 useEffect(() => {
     setPatentes(patente)
 }, [patente]);
-    
 return(
     <>
         <div className="container mx-auto">
@@ -46,9 +44,8 @@ return(
                 <div>
                     <h1 className=" px-2 pt-7 pb-8 text-xl mb-1 font-semibold">Pedidos</h1>
                 </div>
-
                 {!removeLoading && <div className='flex justify-center items-center'><Loading /></div>}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:gap-3">
+                {removeLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:gap-3">
                     {patentes.length > 0 && 
                         patentes.map((patente, index) => {
                             const color = colors[index % colors.length];
@@ -67,7 +64,8 @@ return(
                             </div>
                         );
                     })}
-                </div>
+                </div>}
+                
             </main>
         </div>
     </>
