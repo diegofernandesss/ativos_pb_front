@@ -1,6 +1,6 @@
 import '../index.css'
 
-const NavBar = () => {
+export const NavBar = () => {
   return (
     <>
       <nav className=" bg-white border-gray-200 py-2.5 sm:container sm:mx-auto">
@@ -23,5 +23,3 @@ const NavBar = () => {
     </>
   );
 };
-
-export default NavBar;
