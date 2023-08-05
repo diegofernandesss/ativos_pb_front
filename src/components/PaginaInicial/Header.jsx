@@ -1,9 +1,10 @@
-import { api } from '../../services/api'
 import { useEffect, useRef, useState } from 'react'
+import { api } from '../../services/api'
 
-export const Header = ({updatePatente}) =>{
+export const Header = ({ updatePatente, setRemoveLoading }) =>{
   const [icts, setIcts] = useState([])
   const [ictSelected, setIctSelected] = useState("")
+
   const isFirstRender = useRef(true);
 
   useEffect(() =>{
@@ -20,16 +21,29 @@ export const Header = ({updatePatente}) =>{
       isFirstRender.current = false;
       return;
     }
-
+    setRemoveLoading(false)
     if (ictSelected !== "ICTs") {
       api.get(`patentes_concedidas/ict/${ictSelected}`)
-        .then((resp) => updatePatente(resp.data))
-        .catch((error) => console.log(error)); 
-    } else {
-      api.get(`patentes_concedidas`)
-      .then((resp) => updatePatente(resp.data))
+        .then((resp) => {
+          updatePatente(resp.data)
+          setRemoveLoading(true);
+        })
+        .catch((error) => {
+          console.log(error)
+          setRemoveLoading(true);
+        }); 
+      } else {
+        api.get(`patentes_concedidas`)
+        .then((resp) => {
+          updatePatente(resp.data)
+          setRemoveLoading(true);
+        })
+        .catch((error) => {
+          console.log(error);
+          setRemoveLoading(true);
+        })
     }
-  }, [ictSelected, updatePatente]);
+  }, [ictSelected, updatePatente, setRemoveLoading]);
 
 return(
     <>
