@@ -13,17 +13,15 @@ export const Footer = ()=>{
         {nome: "João Ricardo"}
     ]
 
-    
-
     return(
         <>
             <footer className="bg-gray-900" >
-                <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+                <div className=" mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
                     <div className="md:flex md:justify-between">
                         <div className="mb-6 md:mb-0">
                             <div className="flex items-center bg-gray-900">
                                 <h1 className="h-8 mr-3 text-white font-semibold whitespace-nowra text-2xl">Ativos
-                                <span color="orange" className="text-primary self-center text-2xl font-semibold whitespace-nowrap dark:text-primary"> PB</span></h1>
+                                <span className="text-primary self-center text-2xl font-semibold whitespace-nowrap dark:text-primary"> PB</span></h1>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
