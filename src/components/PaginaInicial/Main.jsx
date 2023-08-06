@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Loading } from '../../pages';
 import { api } from '../../services/api';
+import { QueryNotFound } from './QueryNotFound';
 
 export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
 
@@ -72,6 +73,8 @@ return(
                     <h1 className=" px-2 pt-7 pb-8 text-xl mb-1 font-semibold">Pedidos</h1>
                 </div>
                 {!removeLoading && <div className='flex justify-center items-center mb-16'><Loading /></div>}
+                {removeLoading && patentes.length === 0 && <div className="flex justify-center items-center mb-20"><QueryNotFound />
+                </div>}
                 {removeLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:gap-3">
                     {patentes.length > 0 && 
                         patentes.map((patente, index) => {
