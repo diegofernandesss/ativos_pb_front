@@ -25,7 +25,7 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
             api.get(`patentes_concedidas?page=${cur+1}&limit=${max_items}`)
                 .then((resp) => {
                 setPatentes(resp.data);
-                setRemoveLoading(true);
+                setRemoveLoading(false);
             })
         }
         
@@ -39,7 +39,7 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
             api.get(`patentes_concedidas?page=${cur-1}&limit=${max_items}`)
                 .then((resp) => {
                 setPatentes(resp.data);
-                setRemoveLoading(true);
+                setRemoveLoading(false);
             })
         }
     }
@@ -54,7 +54,7 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
         api.get(`patentes_concedidas?page=1&limit=${max_items}`)
         .then((resp) => {
             setPatentes(resp.data);
-            setRemoveLoading(true);
+            setRemoveLoading(false);
         })
     }, [setRemoveLoading]);
     
@@ -63,16 +63,19 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
         setPatentes(patente)
         setQuantPg(Math.ceil(patente.length / max_items))
     }, [patente]);
-    const max_items = 10
+    const max_items = 6
     
     // Paginação de quando clica em um numero
     useEffect(() => {
+        setRemoveLoading(false);
         api.get(`patentes_concedidas?page=${cur}&limit=${max_items}`)
             .then((resp) => {
             setPatentes(resp.data);
             setRemoveLoading(true);
+
         })
     }, [cur, setRemoveLoading])
+
 
     const pages = Array.from({ length: quantPg}, (_, i) => ({page: i+1}))
 
