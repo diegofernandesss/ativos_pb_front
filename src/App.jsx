@@ -1,6 +1,9 @@
 import Aos from "aos";
 import 'aos/dist/aos.css';
-import {PaginaInicial, Sobre } from './pages'
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes  from './routers/router'
+
 
 export const App = () => {
   Aos.init({
@@ -9,9 +12,8 @@ export const App = () => {
   });
 
   return (
-    <>
-      <PaginaInicial />
-      <Sobre />
-    </>
+    <Router>
+      <Routes />
+    </Router>
   );
 }
