@@ -13,6 +13,11 @@ export const Footer = ()=>{
         {nome: "João Ricardo"}
     ]
 
+    const contatos = [
+        { icon: <BsFacebook size={18} />, link: "https://www.facebook.com/" },
+        { icon: <BsInstagram size={18} />, link: "https://www.instagram.com/" }
+    ]
+
     return(
         <>
             <footer className="bg-gray-900" >
@@ -57,17 +62,19 @@ export const Footer = ()=>{
                             <div>
                                 <h2 className="mb-6 text-sm font-semibold uppercase text-white">Contatos</h2>
                                 <ul className="text-gray-600 dark:text-gray-400 font-medium flex">
-                                    <li className='mb-4'>
-                                        <div className='text-gray-400 hover:text-white cursor-pointer hover:underline'>
-                                            <BsFacebook size={18}/>
-                                        </div>
-                                    </li>
-                                    <li className='mb-4'>
-                                        <div className='text-gray-400 hover:text-white cursor-pointer hover:underline' style={{ marginLeft: '10px' }}>
-                                            <BsInstagram size={18}/>
-                                        </div>
-                                    </li>
-                                </ul>
+                                {
+                                    contatos.map((contato, index) => (
+                                        <li key={index} className='mb-4'>
+                                            <button 
+                                                className='text-gray-400 hover:text-white hover:underline focus:outline-none mx-1'
+                                                onClick={() => window.open(contato.link, "_blank")}
+                                            >
+                                                {contato.icon}
+                                            </button>
+                                        </li>
+                                    ))
+                                }
+                        </ul>
                             </div>
                         </div>
                     </div>
