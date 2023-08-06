@@ -11,7 +11,7 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
 
     const colors = [
         { border: "border-red-500" },
-        { border: "border-green-500" },
+        { border: "border-slate-500" },
     ];
 
     let NextArrow = () =>{
@@ -71,7 +71,7 @@ return(
                 </div>
                 
                 <div>
-                    <h1 className=" px-2 pt-7 pb-8 text-xl mb-1 font-semibold">Pedidos</h1>
+                    <h1 className="px-2 pt-7 pb-8 text-xl mb-1 font-semibold">Pedidos</h1>
                 </div>
                 {!removeLoading && <div className='flex justify-center items-center mb-16'><Loading /></div>}
                 {removeLoading && patentes.length === 0 && <div className="flex justify-center items-center mb-20"><QueryNotFound />
@@ -87,10 +87,16 @@ return(
                                 className={`rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
                                 data-aos="fade-up-right"
                                 >
+                                
                                 <h1 className="text-base font-bold m-4">{patente.titulo}</h1>
                                 <p className="font-semibold ml-4">Número do pedido</p>
                                 <p className="font-normal ml-4 text-stone-500">{patente.numero_pedido}</p>
-                                <p className="font-semibold ml-4 pb-4">{patente.depositantes}</p>
+                                <p  className="font-semibold ml-4 pb-4">{patente.depositantes}</p>
+                                <p class="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
+                                          font-semibold bg-teal-50 text-teal-500 hover:bg-teal-100  
+                                          mb-3 w-40">
+                                            Patente Concedida
+                                         </p>
                             </div>
                         );
                     })}
