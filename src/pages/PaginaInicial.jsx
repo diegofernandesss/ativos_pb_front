@@ -4,6 +4,7 @@ import { Header } from "../components/PaginaInicial/Header";
 import { Main } from "../components/PaginaInicial/Main";
 
 export const PaginaInicial = () => {
+
   const [patente, setPatente] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
 
