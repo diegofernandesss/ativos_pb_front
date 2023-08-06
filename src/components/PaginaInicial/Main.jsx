@@ -105,13 +105,12 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
                     {patentes.length > 0 && 
                         patentes.map((patente, index) => {
                             const color = colors[index % colors.length];
-                            const animation = index % 2 === 0 ? "fade-up-right" : "fade-up-left"
 
                                 return (
                                     <div
                                     key={index}
                                     className={`rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
-                                    data-aos={animation}
+                                    data-aos="fade-up-right"
                                     >
                                     <h1 className="text-base font-bold m-4">{patente.titulo}</h1>
                                     <p className="font-semibold ml-4">Número do pedido</p>
