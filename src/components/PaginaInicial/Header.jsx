@@ -61,13 +61,15 @@ return(
                     </div>
                     
                     <div className="items-center justify-between max-w-screen-xl px-4 py-4 pb-4 mx-auto">
-                        <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500" onChange={valorIct}>
+                        <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 cursor-pointer" onChange={valorIct}>
                             <option value="ICTs">Selecione a ICT</option>
                             {icts.map((ict, index) =>{
-                                return <option key={index} value={ict.cnpj}>{ict.sigla}</option>
+                                return <option className='' key={index} value={ict.cnpj}>{ict.sigla}</option>
                             })}
                         </select>
                     </div>
+
+                    
                 </div>
             </div>
         </header>

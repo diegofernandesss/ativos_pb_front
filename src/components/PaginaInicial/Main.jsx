@@ -56,13 +56,13 @@ return(
         <div className="container mx-auto">
             <main className="items-center justify-between max-w-screen-xl mx-auto px-2 pt-7 pb-8" >
                 <div>
-                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2">
+                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2 cursor-pointer">
                         <option value="option1">Categorias</option>
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>
                     </select>
-                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2">
+                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2 cursor-pointer">
                         <option value="option1">Situação</option>
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
@@ -76,7 +76,6 @@ return(
                 {!removeLoading && <div className='flex justify-center items-center mb-16'><Loading /></div>}
                 {removeLoading && patentes.length === 0 && <div className="flex justify-center items-center mb-20"><QueryNotFound />
                 </div>}
-  
                 {removeLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:gap-3">
                     {patentes.length > 0 && 
                         patentes.map((patente, index) => {

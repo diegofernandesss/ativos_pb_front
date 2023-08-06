@@ -1,16 +1,16 @@
 import '../index.css'
 
+import { Link } from "react-router-dom";
+
 export const NavBar = () => {
   return (
     <>
       <nav className=" bg-white border-gray-200 py-2.5 sm:container sm:mx-auto">
         <div className='z-10 xl:max-w-screen-xl sm:flex sm:justify-between sm:items-center py-2 flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto'>
-            <a href="#">
               <h1 className="text-3xl text-[#000000]"> Ativos<span className="font-bold text-[#EF4444]"> PB</span></h1>
-            </a>
             <div className="flex-grow space-x-4 hidden m-0 mt-5 sm:mt-3 sm:flex p-5 sm:p-0 justify-center items-center shadow-lg sm:shadow-none">
-              <a href="/" className="rounded-lg px-4 py-3 text-slate-700 font-medium hover:bg-red-500 hover:text-white shadow-md">Página Inicial</a>
-              <a href="/about" className="rounded-lg px-4 py-3 text-slate-700 font-medium hover:bg-red-500 hover:text-white shadow-md">Sobre</a>
+              <Link to="/" className="rounded-lg px-4 py-3 text-slate-700 font-medium hover:bg-red-500 hover:text-white shadow-md cursor-pointer">Pagina Incial</Link>
+              <Link to="/sobre" className="rounded-lg px-4 py-3 text-slate-700 font-medium hover:bg-red-500 hover:text-white shadow-md cursor-pointer">Sobre</Link>
             </div>
             <div className='sm:hidden'>
               <button type='button' className='focus:outline-none'>
