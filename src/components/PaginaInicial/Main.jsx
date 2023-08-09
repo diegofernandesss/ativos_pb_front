@@ -97,13 +97,13 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
         <div className="container mx-auto">
             <main className="items-center justify-between max-w-screen-xl mx-auto px-2 pt-7 pb-8" >
                 <div>
-                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2 cursor-pointer">
+                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2  focus:ring-red-500 focus:border-red-500 mx-2 cursor-pointer">
                         <option value="option1">Categorias</option>
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
                         <option value="option3">Option 3</option>
                     </select>
-                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-sm font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2 cursor-pointer">
+                    <select className="w-50 h-12 bg-white-500 border border-gray-300 rounded-md shadow-sm px-10 py-2 text-xs font-medium text-black focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 mx-2 cursor-pointer">
                         <option value="option1">Situação</option>
                         <option value="option1">Option 1</option>
                         <option value="option2">Option 2</option>
@@ -135,6 +135,25 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
                                     <p class="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
                                           font-semibold bg-teal-50 text-teal-500 hover:bg-teal-100  
                                           mb-3 w-40">Patente Concedida</p>
+                                    <div>
+
+                                    <div>
+                                        <div className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
+                                            font-semibold bg-violet-50 text-violet-500 hover:bg-violet-100  
+                                            mb-3 w-40 flex items-center justify-center cursor-pointer">
+                                                <div className="mr-3">Mais Detalhes</div>
+                                                <div className="w-2 h-2 ml-2 border-t-2 border-r-2 transform rotate-45 border-violet-500"></div>
+                                        </div>
+                                        </div>
+                                        {/* <div> 
+                                            <div className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
+                                                font-semibold bg-violet-50 text-violet-400 hover:bg-violet-100  
+                                                mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
+                                                    <div className="mr-3">Processando... </div>
+                                                    <div className="w-6 h-6 border-t-transparent border-solid animate-spin rounded-full border-violet-500 border-4"></div>
+                                                </div>
+                                        </div> */}
+                                    </div>    
                                 </div>
                             );
                         })}

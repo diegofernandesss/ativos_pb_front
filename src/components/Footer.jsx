@@ -26,7 +26,7 @@ export const Footer = ()=>{
                         <div className="mb-6 md:mb-0">
                             <div className="flex items-center bg-gray-900">
                                 <h1 className="h-8 mr-3 text-white font-semibold whitespace-nowra text-2xl">Ativos
-                                <span className="text-primary self-center text-2xl font-semibold whitespace-nowrap dark:text-primary"> PB</span></h1>
+                                <span className="text-primary self-center text-2xl font-semibold whitespace-nowrap dark:text-primary text-red-500"> PB</span></h1>
                             </div>
                         </div>
                         <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
@@ -37,7 +37,7 @@ export const Footer = ()=>{
                                     equipe.map((nomes, index) => (
                                             <li key={index} className='mb-2 md:mr-4'>
                                                 <div 
-                                                className="text-gray-400 cursor-pointer hover:text-white hover:underline"
+                                                className="text-gray-400 cursor-pointer text-sm hover:text-white hover:underline"
                                                 > {nomes.nome} </div>
                                             </li>
                                         ))
@@ -51,7 +51,7 @@ export const Footer = ()=>{
                                     orientador.map((nome, index) => (
                                         <li key={index} className='mb-4'>
                                             <div className='
-                                            text-gray-400 hover:text-white cursor-pointer hover:underline
+                                            text-gray-400 hover:text-white text-sm cursor-pointer hover:underline
                                             '>{nome.nome}</div>
                                         </li>
                                     ))
