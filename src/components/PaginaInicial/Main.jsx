@@ -3,29 +3,41 @@ import { Loading } from '../../pages';
 import { api } from '../../services/api';
 import { QueryNotFound } from './QueryNotFound';
 
-export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
+export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictSelected }) => {
 
     const [patentes, setPatentes] = useState([])
     const [quantPg, setQuantPg] = useState(0);
     let [num, setNum] = useState(1)
     let [cur, setCur] = useState(1)
 
-
     const colors = [
         { border: "border-red-500" },
         { border: "border-slate-500" },
     ];
 
+    useEffect(() => {
+        setCur(1);
+    }, [ictSelected]);
+    
     let NextArrow = () =>{
         if (cur < quantPg){
             num < quantPg && setNum(++num); 
-            cur < quantPg && setCur(cur+1)
+            cur < quantPg && setCur(cur+1); setCursor(cur+1);
             
-            api.get(`patentes_concedidas?page=${cur+1}&limit=${max_items}`)
+            if(ictSelected !== "ICTs"){
+                api.get(`patentes_concedidas/ict/${ictSelected}?page=${cur+1}&limit=${max_items}`)
                 .then((resp) => {
-                setPatentes(resp.data);
-                setRemoveLoading(false);
-            })
+                    setPatentes(resp.data.patentes)
+                    setRemoveLoading(false);
+                })
+            }else{
+                api.get(`patentes_concedidas?page=${cur+1}&limit=${max_items}`)
+                .then((resp) => {
+                    // console.log(resp.data.patentes);
+                    setPatentes(resp.data.patentes);
+                    setRemoveLoading(false);
+                })
+            }
         }
         
     }
@@ -33,49 +45,51 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
     let BackArrow = () =>{
         if (cur > 1){
             num > 1 && setNum(--num);
-            cur > 1 && setCur(cur-1)
-
-            api.get(`patentes_concedidas?page=${cur-1}&limit=${max_items}`)
+            cur > 1 && setCur(cur-1); setCur(cur-1)
+            if(ictSelected !== "ICTs"){
+                api.get(`patentes_concedidas/ict/${ictSelected}?page=${cur-1}&limit=${max_items}`)
                 .then((resp) => {
-                setPatentes(resp.data);
+                    setPatentes(resp.data.patentes)
+                    setRemoveLoading(false);
+                })
+            }
+            api.get(`patentes_concedidas?page=${cur-1}&limit=${max_items}`)
+            .then((resp) => {
+                setPatentes(resp.data.patentes);
                 setRemoveLoading(false);
             })
         }
     }
-    // useEffect para saber quantas patentes concedidas existem
-    useEffect(() => {
-        api.get(`patentes_concedidas`)
-        .then((resp) => setQuantPg(Math.ceil(resp.data.length / max_items)))
-    }, [])
-
-    // useEffect de quando inicia aplicação
-    useEffect(() => {
-        api.get(`patentes_concedidas?page=1&limit=${max_items}`)
-        .then((resp) => {
-            setPatentes(resp.data);
-            setRemoveLoading(false);
-        })
-    }, [setRemoveLoading]);
     
     // Paginação que vem quando seleciona uma ict do header.jsx
     useEffect(() => {
-        setPatentes(patente)
-        setQuantPg(Math.ceil(patente.length / max_items))
+        // console.log("primeiro useeffect");
+        setPatentes(patente.patentes)
+        setQuantPg(patente.number_pages)
+
     }, [patente]);
-    const max_items = 6
-    
+
     // Paginação de quando clica em um numero
     useEffect(() => {
         setRemoveLoading(false);
-        api.get(`patentes_concedidas?page=${cur}&limit=${max_items}`)
+        if(ictSelected !== "ICTs"){
+            api.get(`patentes_concedidas/ict/${ictSelected}?page=${cur}&limit=${max_items}`)
             .then((resp) => {
-            setPatentes(resp.data);
-            setRemoveLoading(true);
+                setPatentes(resp.data.patentes);
+                setQuantPg(resp.data.number_pages);
+                setRemoveLoading(true);
+            })
+        }else{
+            api.get(`patentes_concedidas?page=${cur}&limit=${max_items}`)
+            .then((resp) => {
+                setPatentes(resp.data.patentes);
+                setQuantPg(resp.data.number_pages);
+                setRemoveLoading(true);
+            })
+        }
+    }, [cur, ictSelected, setRemoveLoading])
 
-        })
-    }, [cur, setRemoveLoading])
-
-
+    const max_items = 6
     const pages = Array.from({ length: quantPg}, (_, i) => ({page: i+1}))
 
     return(
@@ -161,3 +175,13 @@ export const Main = ({ patente, removeLoading, setRemoveLoading }) => {
         </>
     );
 }
+
+
+    // useEffect(() => {
+    //     api.get(`patentes_concedidas?page=1&limit=${max_items}`)
+    //     .then((resp) => {
+    //         setPatentes(resp.data.patentes);
+    //         setRemoveLoading(false);
+    //     })
+    //     console.log("Primeiro useEffect");
+    // }, [setRemoveLoading]);
