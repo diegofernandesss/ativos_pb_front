@@ -125,14 +125,14 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
                                 return (
                                     <div
                                     key={index}
-                                    className={`rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
+                                    className={`rounded-xl shadow-lg hover:shadow-xl mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
                                     data-aos="fade-up-right"
                                     >
                                     <h1 className="text-base font-bold m-4">{patente.titulo}</h1>
                                     <p className="font-semibold ml-4">Número do pedido</p>
                                     <p className="font-normal ml-4 text-stone-500">{patente.numero_pedido}</p>
                                     <p className="font-semibold ml-4 pb-4">{patente.depositantes}</p>
-                                    <p class="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
+                                    <p className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
                                           font-semibold bg-teal-50 text-teal-500 hover:bg-teal-100  
                                           mb-3 w-40">Patente Concedida</p>
                                     <div>
@@ -145,14 +145,14 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
                                                 <div className="w-2 h-2 ml-2 border-t-2 border-r-2 transform rotate-45 border-violet-500"></div>
                                         </div>
                                         </div>
-                                        {/* <div> 
+                                        <div> 
                                             <div className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
                                                 font-semibold bg-violet-50 text-violet-400 hover:bg-violet-100  
                                                 mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
                                                     <div className="mr-3">Processando... </div>
                                                     <div className="w-6 h-6 border-t-transparent border-solid animate-spin rounded-full border-violet-500 border-4"></div>
                                                 </div>
-                                        </div> */}
+                                        </div>
                                     </div>    
                                 </div>
                             );
