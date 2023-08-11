@@ -133,7 +133,7 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
                                     <p className="font-normal ml-4 text-stone-500">{patente.numero_pedido}</p>
                                     <p className="font-semibold ml-4 pb-4">{patente.depositantes}</p>
                                     <p className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
-                                          font-semibold bg-teal-50 text-teal-500 hover:bg-teal-100  
+                                          font-semibold bg-teal-50 text-teal-500   
                                           mb-3 w-40">Patente Concedida</p>
                                     <div>
 
@@ -151,8 +151,8 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
                                                 mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
                                                     <div className="mr-3">Processando... </div>
                                                     <div className="w-6 h-6 rounded-full animate-spin
-                       border-4 border-solid border-violet-500 
-                       border-t-transparent shadow-md "></div>
+                                                                    border-4 border-solid border-violet-500 
+                                                                    border-t-transparent "></div>
                                                 </div>
                                         </div>
                                     </div>    
