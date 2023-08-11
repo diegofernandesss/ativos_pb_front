@@ -150,7 +150,9 @@ export const Main = ({ patente, removeLoading, setRemoveLoading, setCursor, ictS
                                                 font-semibold bg-violet-50 text-violet-400 hover:bg-violet-100  
                                                 mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
                                                     <div className="mr-3">Processando... </div>
-                                                    <div className="w-6 h-6 border-t-transparent border-solid animate-spin rounded-full border-violet-500 border-4"></div>
+                                                    <div className="w-6 h-6 rounded-full animate-spin
+                       border-4 border-solid border-violet-500 
+                       border-t-transparent shadow-md "></div>
                                                 </div>
                                         </div>
                                     </div>    
