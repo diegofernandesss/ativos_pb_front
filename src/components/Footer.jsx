@@ -21,8 +21,8 @@ export const Footer = ()=>{
     ]
 
     const contatos = [
-        { icon: <BsFacebook size={18} />, link: "https://www.facebook.com/" },
-        { icon: <BsInstagram size={18} />, link: "https://www.instagram.com/" }
+        { icon: <BsFacebook size={18} />, link: "https://www.facebook.com/profile.php?id=100087903570816" },
+        { icon: <BsInstagram size={18} />, link: "https://www.instagram.com/peti_tsi/" }
     ]
 
     return(
@@ -41,7 +41,7 @@ export const Footer = ()=>{
                                 <TeamList>
                                 {equipe.map((nomes, index) => (
                                     <TeamListItem key={index}>
-                                    <TeamMember>{nomes.nome}</TeamMember>
+                                        <TeamMember>{nomes.nome}</TeamMember>
                                     </TeamListItem>
                                 ))}
                                 </TeamList>
@@ -52,7 +52,7 @@ export const Footer = ()=>{
                                 <TeamList>
                                 {orientador.map((nome, index) => (
                                     <TeamListItem key={index}>
-                                    <TeamMember>{nome.nome}</TeamMember>
+                                        <TeamMember>{nome.nome}</TeamMember>
                                     </TeamListItem>
                                 ))}
                                 </TeamList>
@@ -63,9 +63,9 @@ export const Footer = ()=>{
                                 <ContactList>
                                 {contatos.map((contato, index) => (
                                     <ContactItem key={index}>
-                                    <ContactButton onClick={() => window.open(contato.link, "_blank")}>
-                                        {contato.icon}
-                                    </ContactButton>
+                                        <ContactButton onClick={() => window.open(contato.link, "_blank")}>
+                                            {contato.icon}
+                                        </ContactButton>
                                     </ContactItem>
                                 ))}
                                 </ContactList>
