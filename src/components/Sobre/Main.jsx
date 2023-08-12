@@ -1,4 +1,5 @@
-import { heroData } from '../../assets';
+import { heroData, equipesImg } from '../../assets';
+
 
 import {
     MainContainer,
@@ -66,10 +67,11 @@ export const Main = () => {
                             ))}
                         </TextContainer>
                         <GridContainer>
-                            <StyledImg src={image} alt="Imagem Equipe" />
-                            <StyledImg src={image} alt="Imagem Equipe" />
-                            <StyledImg src={image} alt="Imagem Equipe" />
-                            <StyledImg src={image} alt="Imagem Equipe" />
+                            {equipesImg.map((member, index) => (
+                                <div key={index}>
+                                    <StyledImg src={member.image} alt={member.alt} />
+                                </div>
+                            ))}
                         </GridContainer>
                     </FlexContainer>
                 </Container>
