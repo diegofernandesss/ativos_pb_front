@@ -111,7 +111,7 @@ export const Main = ({ ictSelected }) => {
                                                 font-semibold bg-violet-50 text-violet-400 hover:bg-violet-100  
                                                 mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
                                                     <div className="mr-3">Processando... </div>
-                                                    <div className="w-6 h-6 rounded-full animate-spin
+                                                    <div className="w-4 h-4 rounded-full animate-spin
                                                                     border-4 border-solid border-violet-500 
                                                                     border-t-transparent "></div>
                                                 </div>

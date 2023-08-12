@@ -9,12 +9,8 @@ export const PaginaInicial = () => {
 
     return (
         <Layout>
-            <Header 
-                setIctSelectedMain={setIctSelected}
-            />
-            <Main 
-                ictSelected={ictSelected}
-            />
+            <Header setIctSelectedMain={setIctSelected} />
+            <Main ictSelected={ictSelected} />
         </Layout>
     );
 };

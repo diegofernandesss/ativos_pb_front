@@ -33,12 +33,12 @@ export const Footer = ()=>{
                     <FlexContainer>
                         <Logo>
                             <LogoContainer>
-                                <LogoText>Ativos<LogoHighlight> PB</LogoHighlight></LogoText>
+                                <LogoText>Ativos<LogoHighlight> PB</LogoHighlight></LogoText> {/** Nome do Projeto */}
                             </LogoContainer>
                         </Logo>
                         <ContentGrid>
                             <TeamSection>
-                                <StyledH2>Equipe</StyledH2>
+                                <StyledH2>Equipe</StyledH2> {/** Equipe De Desenvolvimento */}
                                 <TeamList>
                                 {equipe.map((nomes, index) => (
                                     <TeamListItem key={index}>
@@ -49,7 +49,7 @@ export const Footer = ()=>{
                             </TeamSection>
 
                             <TeamSection>
-                                <StyledH2>Orientador</StyledH2>
+                                <StyledH2>Orientador</StyledH2> {/** Orientador Do Desenvolvimento */}
                                 <TeamList>
                                 {orientador.map((nome, index) => (
                                     <TeamListItem key={index}>
@@ -60,7 +60,7 @@ export const Footer = ()=>{
                             </TeamSection>
 
                             <ContactSection>
-                                <StyledH2>Contatos</StyledH2>
+                                <StyledH2>Contatos</StyledH2> {/** Contatos do Projeto*/}
                                 <ContactList>
                                 {contatos.map((contato, index) => (
                                     <ContactItem key={index}>
