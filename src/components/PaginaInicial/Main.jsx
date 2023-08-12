@@ -74,7 +74,7 @@ export const Main = ({ ictSelected }) => {
                         <h1 className="px-2 pt-7 pb-8 text-xl mb-1 font-semibold">Pedidos</h1>
                     </div>
                     {(!removeLoading || isLoading) && <div className='flex justify-center items-center mb-16'><Loading /></div>}
-                    {removeLoading && !isLoading && patentes.length === 0 && <div className="flex justify-center items-center mb-20"><QueryNotFound />
+                    {removeLoading && !isLoading && patentes.length === 0 && <div className="flex justify-center items-center mb-20"><QueryNotFound>CONSULTA NÃO ENCONTRADA</QueryNotFound>
                     </div>}
                     {removeLoading && <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 sm:gap-3">
                         {patentes.length > 0 && 
@@ -84,7 +84,7 @@ export const Main = ({ ictSelected }) => {
                                     return (
                                         <div
                                         key={index}
-                                        className={`rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
+                                        className={`rounded-xl shadow-lg hover:shadow-xl mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark pt-4 box border-t-4 ${color.border}`}
                                         data-aos="fade-up-right"
                                         >
                                         <h1 className="text-base font-bold m-4">{patente.titulo}</h1>
@@ -92,7 +92,7 @@ export const Main = ({ ictSelected }) => {
                                         <p className="font-normal ml-4 text-stone-500">{patente.numero_pedido}</p>
                                         <p className="font-semibold ml-4 pb-4">{patente.depositantes}</p>
                                         <p className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
-                                            font-semibold bg-teal-50 text-teal-500 hover:bg-teal-100  
+                                            font-semibold bg-teal-50 text-teal-500  
                                             mb-3 w-40">Patente Concedida</p>
                                         <div>
 
@@ -105,7 +105,17 @@ export const Main = ({ ictSelected }) => {
                                             </div>
                                             </div>
                                             
-                                        </div>    
+                                        </div>   
+                                        <div> 
+                                            <div className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
+                                                font-semibold bg-violet-50 text-violet-400 hover:bg-violet-100  
+                                                mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
+                                                    <div className="mr-3">Processando... </div>
+                                                    <div className="w-6 h-6 rounded-full animate-spin
+                                                                    border-4 border-solid border-violet-500 
+                                                                    border-t-transparent "></div>
+                                                </div>
+                                        </div> 
                                     </div>
                                 );
                             })}
