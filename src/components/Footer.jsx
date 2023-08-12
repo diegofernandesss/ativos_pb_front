@@ -17,8 +17,7 @@ export const Footer = ()=>{
     ]
 
     const orientador = [
-        {nome: "João Ricardo"},
-        {nome: "Gabriela "}
+        {nome: "João Ricardo"}
     ]
 
     const contatos = [
