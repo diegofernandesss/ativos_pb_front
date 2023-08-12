@@ -3,14 +3,13 @@ import { Link } from 'react-router-dom';
 
 
 export const NavContainer = tw.div`
-  dark:bg-slate-900
+  bg-gray-900
 `;
 
 export const Nav = tw.nav`
   bg-white 
-  border-gray-200 
-  dark:border-gray-700 
-  dark:bg-slate-900 
+  border-gray-700 
+  bg-slate-900 
   py-2.5 
   sm:container 
   sm:mx-auto
@@ -23,7 +22,8 @@ export const NavContent = tw.div`
   sm:justify-between 
   sm:items-center 
   py-2 
-  flex flex-wrap 
+  flex 
+  flex-wrap 
   items-center 
   justify-between 
   max-w-screen-xl 
@@ -33,8 +33,8 @@ export const NavContent = tw.div`
 
 export const Logo = tw.h1`
   text-2xl
-  text-[#000000] 
-  dark:text-white
+
+  text-white
 `;
 
 export const NavLinks = tw.div`
@@ -60,10 +60,11 @@ export const NavLink = tw(Link)`
   hover:bg-red-500 
   hover:text-white 
   shadow-md 
-  dark:shadow-slate-700 
+  shadow-slate-700 
   cursor-pointer 
-  dark:text-white 
+  text-white 
   text-sm
+
 `;
 
 export const MobileMenuButton = tw.button`

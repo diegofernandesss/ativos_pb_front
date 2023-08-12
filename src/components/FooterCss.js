@@ -2,6 +2,7 @@ import tw from 'tailwind-styled-components';
 
 export const FooterBackground = tw.footer`
     bg-gray-900
+    
 `;
 
 export const FooterContainer = tw.div`
@@ -11,6 +12,8 @@ export const FooterContainer = tw.div`
     p-4 
     py-6 
     lg:py-8
+    sm:container 
+    xl:max-w-screen-xl 
 `;
 
 export const FlexContainer = tw.div`
