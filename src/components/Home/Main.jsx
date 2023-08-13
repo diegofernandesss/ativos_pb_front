@@ -105,7 +105,7 @@ export const Main = ({ ictSelected }) => {
                                             </div>
                                             
                                         </div>   
-                                        {/* <div> 
+                                        <div> 
                                             <div className="text-sm ml-4 mr-4 py-2 px-4 rounded-full border-0 
                                                 font-semibold bg-violet-50 text-violet-400 hover:bg-violet-100  
                                                 mb-3 w-40 flex items-center justify-center cursor-pointer hover:cursor-not-allowed">
@@ -114,7 +114,7 @@ export const Main = ({ ictSelected }) => {
                                                                     border-4 border-solid border-violet-500 
                                                                     border-t-transparent "></div>
                                                 </div>
-                                        </div>  */}
+                                        </div> 
                                     </div>
                                 );
                             })}
