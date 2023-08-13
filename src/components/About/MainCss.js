@@ -19,8 +19,6 @@ export const Container = tw.div`
     pb-8
 `;
 
-
-
 export const TextContainer = tw.div`
     md:w-1/2 
     text-center 
@@ -78,20 +76,3 @@ export const GridContainer = tw.div`
     mx-auto
     md:gap-4
 `;
-
-
-// export const StyledImg = tw.img`
-//     rounded-lg 
-//     max-w-full 
-//     md:max-w-[320px]
-// `;
-
-// export const GridContainer = tw.div`
-//     mx-auto
-//     md:w-1/3 
-//     md:max-w-[800px]
-//     grid 
-//     md:grid-cols-2 
-//     gap-4
-//     md:gap-4
-// `; 

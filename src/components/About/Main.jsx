@@ -1,6 +1,5 @@
 import { heroData, equipesImg } from '../../assets';
 
-
 import {
     MainContainer,
     MainSection,
@@ -37,10 +36,10 @@ export const Main = () => {
                 <Container>
                     <FlexContainer>
                         <TextContainer>
-                            <StyledH1>Objetivo</StyledH1>   
+                            <StyledH1>Objetivo</StyledH1>  {/** Primeiro Título */}
                             {objective.map((phrases, index)=> (
                                 <div key={index}>
-                                    <StyledP >
+                                    <StyledP > {/** Frase Do Título do Projeto */}
                                         {phrases.phrase}
                                     </StyledP>
                                 </div> 
@@ -57,10 +56,10 @@ export const Main = () => {
                 <Container>
                     <FlexContainer>
                         <TextContainer>
-                            <StyledH1>Equipe PETI Desenvolvimento</StyledH1>     
-                            {team.map((phrases, index) => (
+                            <StyledH1>Equipe PETI Desenvolvimento</StyledH1>  {/** Segundo Título */}
+                            {team.map((phrases, index) => ( 
                                 <div key={index}>
-                                    <StyledP >
+                                    <StyledP > {/** Frase da Equipe de Desenvolvimento */}
                                         {phrases.phrase}
                                     </StyledP>
                                 </div>
@@ -69,7 +68,7 @@ export const Main = () => {
                         <GridContainer>
                             {equipesImg.map((member, index) => (
                                 <div key={index}>
-                                    <StyledImg src={member.image} alt={member.alt} />
+                                    <StyledImg src={member.image} alt={member.alt} /> {/** Imagens em Grid - 4 Imagens Equipe*/}
                                 </div>
                             ))}
                         </GridContainer>
