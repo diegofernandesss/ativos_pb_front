@@ -1,7 +1,7 @@
 import { BsFacebook, BsInstagram } from 'react-icons/bs'
 import {
     FooterBackground, FooterContainer, FlexContainer, LogoContainer,
-    StyledH2, LogoText, LogoHighlight, TeamSection, TeamListItem, TeamMember,
+    StyledH2, LogoText, LogoHighlight, Section, TeamListItem, TeamMember,
     ContactSection, ContactList, ContactItem, ContactButton, CustomSpan,
     AdditionalContent, CustomHr, Logo, TeamList, ContentGrid
   } from './FooterCss';
@@ -9,18 +9,18 @@ import {
 
 export const Footer = ()=>{
 
-    const equipe = [
-        {nome: "Alysson Pereira"},
-        {nome: "Diego Fernandes"},
-        {nome: "Eurídyce Karla"},
-        {nome: "Jardiel Carlos"},
+    const team = [
+        {name: "Alysson Pereira"},
+        {name: "Diego Fernandes"},
+        {name: "Eurídyce Karla"},
+        {name: "Jardiel Carlos"},
     ]
 
-    const orientador = [
-        {nome: "João Ricardo"}
+    const advisor = [
+        {name: "João Ricardo"}
     ]
 
-    const contatos = [
+    const contacts = [
         { icon: <BsFacebook size={18} />, link:"https://www.facebook.com/people/peti_tsi/" },
         { icon: <BsInstagram size={18} />, link:"https://www.instagram.com/peti_tsi/" }
     ]
@@ -36,35 +36,35 @@ export const Footer = ()=>{
                             </LogoContainer>
                         </Logo>
                         <ContentGrid>
-                            <TeamSection>
+                            <Section>
                                 <StyledH2>Equipe</StyledH2> {/** Equipe De Desenvolvimento */}
                                 <TeamList>
-                                {equipe.map((nomes, index) => (
+                                {team.map((names, index) => (
                                     <TeamListItem key={index}>
-                                        <TeamMember>{nomes.nome}</TeamMember>
+                                        <TeamMember>{names.name}</TeamMember>
                                     </TeamListItem>
                                 ))}
                                 </TeamList>
-                            </TeamSection>
+                            </Section>
 
-                            <TeamSection>
+                            <Section>
                                 <StyledH2>Orientador</StyledH2> {/** Orientador Do Desenvolvimento */}
                                 <TeamList>
-                                {orientador.map((nome, index) => (
+                                {advisor.map((names, index) => (
                                     <TeamListItem key={index}>
-                                        <TeamMember>{nome.nome}</TeamMember>
+                                        <TeamMember>{names.name}</TeamMember>
                                     </TeamListItem>
                                 ))}
                                 </TeamList>
-                            </TeamSection>
+                            </Section>
 
                             <ContactSection>
                                 <StyledH2>Contatos</StyledH2> {/** Contatos do Projeto*/}
                                 <ContactList>
-                                {contatos.map((contato, index) => (
+                                {contacts.map((contact, index) => (
                                     <ContactItem key={index}>
-                                        <ContactButton onClick={() => window.open(contato.link, "_blank")}>
-                                            {contato.icon}
+                                        <ContactButton onClick={() => window.open(contact.link, "_blank")}>
+                                            {contact.icon}
                                         </ContactButton>
                                     </ContactItem>
                                 ))}

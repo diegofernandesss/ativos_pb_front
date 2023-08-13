@@ -12,7 +12,6 @@ export const Main = ({ ictSelected }) => {
     const [isLoading, setIsLoading] = useState(false)
     const [removeLoading, setRemoveLoading] = useState(false);
 
-
     const colors = [
         { border: "border-red-500" },
         { border: "border-slate-500" },

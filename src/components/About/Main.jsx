@@ -16,14 +16,14 @@ import {
 
 export const Main = () => {
 
-    const objetivo = [
-        {frase: `O site tem o intuito de trazer as patentes das principais 
+    const objective = [
+        {phrase: `O site tem o intuito de trazer as patentes das principais 
                  ICT’s da Paraíba facilitando a vida do inventor que deseja 
                  pesquisar sobre patentes no Estado da Paraíba.`}
     ]
 
-    const equipe = [
-        {frase: `Somos um grupo que deseja entregar soluções eficazes. 
+    const team = [
+        {phrase: `Somos um grupo que deseja entregar soluções eficazes. 
                 Nossa missão é utilizar as tecnologias ativas no mercado 
                 e implementar no site para que seja possível ter um feedback 
                 positivo. Além de propor novos conhecimentos.`}
@@ -38,10 +38,10 @@ export const Main = () => {
                     <FlexContainer>
                         <TextContainer>
                             <StyledH1>Objetivo</StyledH1>   
-                            {objetivo.map((frase, index)=> (
+                            {objective.map((phrases, index)=> (
                                 <div key={index}>
                                     <StyledP >
-                                        {frase.frase}
+                                        {phrases.phrase}
                                     </StyledP>
                                 </div> 
                             ))}
@@ -58,10 +58,10 @@ export const Main = () => {
                     <FlexContainer>
                         <TextContainer>
                             <StyledH1>Equipe PETI Desenvolvimento</StyledH1>     
-                            {equipe.map((frase, index) => (
+                            {team.map((phrases, index) => (
                                 <div key={index}>
                                     <StyledP >
-                                        {frase.frase}
+                                        {phrases.phrase}
                                     </StyledP>
                                 </div>
                             ))}

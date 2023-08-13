@@ -2,7 +2,6 @@ import tw from 'tailwind-styled-components';
 
 export const FooterBackground = tw.footer`
     bg-gray-900
-    
 `;
 
 export const FooterContainer = tw.div`
@@ -67,7 +66,7 @@ export const ContentGrid = tw.div`
     sm:grid-cols-3
 `;
 
-export const TeamSection = tw.div``;
+export const Section = tw.div``;
 
 export const TeamList = tw.ul`
     text-gray-600 
