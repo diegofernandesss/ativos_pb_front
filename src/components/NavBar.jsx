@@ -7,7 +7,8 @@ import {
   Logo,
   NavLinks,
   NavLink,
-  MobileMenuButton
+  MobileMenuButton,
+  LogoHighligh
 } from './NavBarCss'
 
 export const NavBar = () => {
@@ -16,8 +17,7 @@ export const NavBar = () => {
       <NavContainer>
         <Nav>
           <NavContent>
-            <Logo>Ativos<span className="font-bold text-[#EF4444]"> PB</span> {/** Nome do Projeto */}
-            </Logo>
+            <Logo>Ativos<LogoHighligh> PB</LogoHighligh></Logo> {/** Nome do Projeto */}
             <NavLinks>
               <NavLink to="/">Pagina Inicial</NavLink> {/** Rota para a Página Inicial */}
               <NavLink to="/sobre">Sobre</NavLink> {/** Rota para o Sobre */}

@@ -33,8 +33,13 @@ export const NavContent = tw.div`
 
 export const Logo = tw.h1`
   text-2xl
-
   text-white
+`;
+
+
+export const LogoHighligh = tw.span`
+  font-bold 
+  text-[#EF4444]
 `;
 
 export const NavLinks = tw.div`
