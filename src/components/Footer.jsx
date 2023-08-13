@@ -21,7 +21,7 @@ export const Footer = ()=>{
     ]
 
     const contacts = [
-        { icon: <BsFacebook size={18} />, link:"https://www.facebook.com/people/peti_tsi/" },
+        { icon: <BsFacebook size={18} />, link:"https://www.facebook.com/people/peti_tsi/100087903570816/" },
         { icon: <BsInstagram size={18} />, link:"https://www.instagram.com/peti_tsi/" }
     ]
 
