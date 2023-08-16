@@ -4,7 +4,7 @@ import Alysson from './Alysson.svg';
 import Euridyce from './Euridyce.svg';
 import Jardiel from './Jardiel.svg';
 
-export let heroData = {image: Viajante}
+export let heroData = {image: Viajante, alt: "Imagem Equipe"}
 
 export let equipesImg = [
     {image: Diego, alt: "Diego Equipe"},

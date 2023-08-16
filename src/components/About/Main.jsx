@@ -28,7 +28,7 @@ export const Main = () => {
                 positivo. Além de propor novos conhecimentos.`}
     ]
 
-    const { image } = heroData;
+    const { image, alt } = heroData;
 
     return (
         <MainContainer>
@@ -46,7 +46,7 @@ export const Main = () => {
                             ))}
                         </TextContainer>
                         <ImageContainer>
-                            <StyledImg src={image} alt="Imagem Equipe" />
+                            <StyledImg src={image} alt={alt} />
                         </ImageContainer>
                     </FlexContainer>
                 </Container>
