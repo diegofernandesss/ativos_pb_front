@@ -14,6 +14,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [activePage, setActivePage] = useState(1);
     const [totPatentes, setTotPatentes] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
+    const [situacao, setSituacao] = useState("")
 
     const colors = [
         { border: "border-red-500" },
@@ -24,6 +25,34 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
     }
+
+    const ChangeSituacao = (e) => {
+        setSituacao(e.target.value)
+    }
+
+    useEffect(() => {
+        setRemoveLoading(false);
+        setIsLoading(true);
+        setPatentes([]);
+        if(situacao === "pendente"){
+            api.get(`patentes_pendentes?page=${activePage}&limit=${max_items}`)
+            .then((resp) => {
+                setPatentes(resp.data.patentes)
+                setTotPatentes(resp.data.number_patentes)
+                setRemoveLoading(true);
+                setIsLoading(false);
+            })
+        }else {
+            api.get(`patentes_concedidas?page=${activePage}&limit=${max_items}`)
+            .then((resp) => {
+                setPatentes(resp.data.patentes);
+                setTotPatentes(resp.data.number_patentes)
+                setRemoveLoading(true);
+                setIsLoading(false);
+            })
+        }
+        
+    }, [activePage, setRemoveLoading, situacao]) 
     
     useEffect(() => {
         setActivePage(1);
@@ -69,11 +98,10 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="option2">Option 2</option>
                             <option value="option3">Option 3</option>
                         </Select>
-                        <Select>
-                            <option value="option1">Situação</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
+                        <Select onChange={ChangeSituacao}>
+                            <option value="Situacao">Situação</option>
+                            <option value="concedida" selected>Concedida</option>
+                            <option value="pendente">Pendente</option>
                         </Select>
                     </div>
                     
