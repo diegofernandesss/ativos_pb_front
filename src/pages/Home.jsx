@@ -6,11 +6,22 @@ import { Main } from "../components/Home/Main";
 export const Home = () => {
 
     const [ictSelected, setIctSelected] = useState("ICTs")
+    const [resultNumPatente, setResultNumPatente] = useState([])
+    const [removeLoading, setRemoveLoading] = useState(false);
 
     return (
         <Layout>
-            <Header setIctSelectedMain={setIctSelected} />
-            <Main ictSelected={ictSelected} />
+            <Header 
+                setIctSelectedMain={setIctSelected} 
+                setResultNumPatente={setResultNumPatente}
+                setRemoveLoading={setRemoveLoading}
+            />
+            <Main 
+                ictSelected={ictSelected} 
+                resultNumPatente={resultNumPatente}
+                removeLoading={removeLoading}
+                setRemoveLoading={setRemoveLoading}
+            />
         </Layout>
     );
 };
