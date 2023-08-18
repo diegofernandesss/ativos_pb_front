@@ -5,9 +5,10 @@ import { HeaderComponent, HeaderBackground, HeaderContainer, SearchBarContainer,
         SearchInput, SearchButton, SearchButtonHighlight, SearchButtonText, 
         SelectContainer, StyledSelect, BlockContainer} from './HeaderCss'
 
-export const Header = ({ setIctSelectedMain }) =>{
+export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoading }) =>{
   const [icts, setIcts] = useState([])
   const [ictSelected, setIctSelected] = useState("ICTs")
+  const [numPatente, setNumPatente] = useState("")
 
   useEffect(() =>{
     api.get("icts")
@@ -16,6 +17,25 @@ export const Header = ({ setIctSelectedMain }) =>{
 
   const valorIct = (e) => {
     setIctSelected(e.target.value)
+  }
+
+  const handleChangeSearch = (e) => {
+    setNumPatente(e.target.value)
+  
+  }
+
+  const handleClickSearch = () => {
+    setRemoveLoading(false)
+    
+    api.get(`patente_concedida/${numPatente}`)
+    .then((resp) => {
+      setResultNumPatente([resp.data])
+      setRemoveLoading(true)
+    })
+    .catch(() => {
+      setResultNumPatente([])
+      setRemoveLoading(true)
+    })
   }
 
   useEffect(() => {
@@ -33,10 +53,10 @@ return(
               <HeaderContainer>
                   <BlockContainer>
                       <SearchBarContainer>
-                          <SearchInput type="text" placeholder="Digite o número do Pedido" /> {/** Entrada de Dados Da Patente */}
+                          <SearchInput type="text" placeholder="Digite o número do Pedido"onChange={handleChangeSearch} /> {/** Entrada de Dados Da Patente */}
                           <SearchButton>
                               <SearchButtonHighlight /> {/** Efeito do Botão Pesquisar */}
-                              <SearchButtonText>Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
+                              <SearchButtonText onClick={handleClickSearch} >Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
                           </SearchButton>
                         </SearchBarContainer>
                     </BlockContainer>

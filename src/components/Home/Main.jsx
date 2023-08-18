@@ -8,13 +8,12 @@ import { Container, MainContainer, Select, Title, QueryNotFound,
          Loadingtext, LoadAnimate, DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
 
-export const Main = ({ ictSelected }) => {
+export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading }) => {
 
     const [patentes, setPatentes] = useState([])
     const [activePage, setActivePage] = useState(1);
     const [totPatentes, setTotPatentes] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-    const [removeLoading, setRemoveLoading] = useState(false);
 
     const colors = [
         { border: "border-red-500" },
@@ -54,6 +53,11 @@ export const Main = ({ ictSelected }) => {
         }
     }, [activePage, ictSelected, setRemoveLoading]);
 
+    useEffect(() => {
+        setPatentes(resultNumPatente)
+        setTotPatentes(1)  
+    }, [resultNumPatente])
+
     return(
         <>
             <Container>
@@ -83,7 +87,7 @@ export const Main = ({ ictSelected }) => {
                         </NotFoundContainer>
                     )}
                     {removeLoading && <GridCards> 
-                        {patentes.length > 0 && 
+                        {patentes.length > 0 && patentes !== [] &&
                             patentes.map((patente, index) => {
                                 const color = colors[index % colors.length];    
                                     return (
