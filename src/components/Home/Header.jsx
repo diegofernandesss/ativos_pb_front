@@ -54,9 +54,9 @@ return(
                   <BlockContainer>
                       <SearchBarContainer>
                           <SearchInput type="text" placeholder="Digite o número do Pedido"onChange={handleChangeSearch} /> {/** Entrada de Dados Da Patente */}
-                          <SearchButton>
+                          <SearchButton onClick={handleClickSearch}>
                               <SearchButtonHighlight /> {/** Efeito do Botão Pesquisar */}
-                              <SearchButtonText onClick={handleClickSearch} >Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
+                              <SearchButtonText >Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
                           </SearchButton>
                         </SearchBarContainer>
                     </BlockContainer>
