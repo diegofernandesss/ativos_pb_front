@@ -30,11 +30,14 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
     .then((resp) => {
       setResultNumPatente([resp.data])
       setRemoveLoading(true)
+      
     })
     .catch(() => {
       setResultNumPatente([])
       setRemoveLoading(true)
     })
+
+    setNumPatente("")
   }
 
   useEffect(() => {
@@ -48,8 +51,8 @@ return(
               <HeaderContainer>
                   <BlockContainer>
                       <SearchBarContainer>
-                          <SearchInput type="text" placeholder="Digite o número do Pedido"onChange={handleChangeSearch} /> {/** Entrada de Dados Da Patente */}
-                          <SearchButton onClick={handleClickSearch}>
+                          <SearchInput type="text" placeholder="Digite o número do Pedido" onChange={handleChangeSearch} value={numPatente} /> {/** Entrada de Dados Da Patente */}
+                        <SearchButton onClick={handleClickSearch}>
                               <SearchButtonHighlight /> {/** Efeito do Botão Pesquisar */}
                               <SearchButtonText>Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
                           </SearchButton>
