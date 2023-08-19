@@ -8,7 +8,7 @@ import { Container, MainContainer, Select, Title, QueryNotFound,
          Loadingtext, LoadAnimate, DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
 
-export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading }) => {
+export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading, setSituacaoSearch }) => {
 
     const [patentes, setPatentes] = useState([])
     const [activePage, setActivePage] = useState(1);
@@ -28,6 +28,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
     const ChangeSituacao = (e) => {
         setSituacao(e.target.value)
+        setSituacaoSearch(e.target.value)
     }
 
     useEffect(() => {
