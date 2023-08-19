@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { Loading } from '../../pages';
 import { api } from '../../services/api';
 import Pagination from 'react-js-pagination';
+import dayjs from "dayjs";
 import { Container, MainContainer, Select, Title, QueryNotFound, 
          LoadingContainer, NotFoundContainer, Card, GridCards, CardTitle, 
-         CardOrderNumber, CardText, CardDepositorText, StatusBadge, LoadingButton, 
+         CardNumber, CardText, CardDepositorText, StatusBadge, LoadingButton, 
          Loadingtext, LoadAnimate, DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
 
@@ -143,13 +144,22 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
                                         <CardTitle>{patente.titulo}</CardTitle>
 
+                                        {situacao === "pendente" ? <CardText>Data Do Depósito:</CardText> :  "" }
+                                        {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_deposito).format("DD/MM/YYYY")}</CardNumber> : ""}
+
+                                        {situacao === "pendente" ? <CardText>Data Do Protocolo:</CardText> :  "" }
+                                        {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_protocolo).format("DD/MM/YYYY")}</CardNumber> : ""}
+
                                         <CardText>Número do pedido</CardText> 
-                                        <CardOrderNumber>{patente.numero_pedido}</CardOrderNumber> 
+                                        <CardNumber>{patente.numero_pedido}</CardNumber>
+
                                         {patente.depositantes.map((depositante, index) => (
                                             <CardDepositorText key={index}>{depositante}</CardDepositorText>
                                         ))}
 
-                                        <StatusBadge>Patente Concedida</StatusBadge>
+                                        {situacao==="pendente" ?  
+                                        <StatusBadge >Patente Pendente</StatusBadge> : 
+                                        <StatusBadge $primary>Patente Concedida</StatusBadge> }
                                      
 
                                         <div>

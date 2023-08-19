@@ -90,7 +90,7 @@ export const CardText= tw.p`
     ml-4
 `;
 
-export const CardOrderNumber = tw.p`
+export const CardNumber = tw.p`
     font-normal 
     ml-4 
     text-stone-500
@@ -99,21 +99,21 @@ export const CardOrderNumber = tw.p`
 export const CardDepositorText = tw.p`
     font-semibold 
     ml-4
-    last:pb-4
+    mb-2
+    mt-1
 `;
 
 export const StatusBadge = tw.div`
+    ${(props) => (props.$primary ? "text-teal-500": "text-orange-500")}
+    ${(props) => (props.$primary ? "bg-teal-50": "bg-orange-50")}
     text-sm 
     ml-4 
-    mr-4
-    mt-4 
+    mr-4 
     py-2 
     px-4 
     rounded-full 
     border-0 
     font-semibold
-    bg-teal-50
-    text-teal-500
     mb-3
     w-40
 `;
