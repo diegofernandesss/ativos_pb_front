@@ -36,7 +36,7 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
         setRemoveLoading(true)
       })
       setNumPatente("")
-    }else{
+    }else if(situacaoSearch === "pendente"){
       api.get(`patente_pendente/${numPatente}`)
       .then((resp) => {
         setResultNumPatente([resp.data])
