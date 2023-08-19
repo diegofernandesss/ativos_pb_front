@@ -21,12 +21,11 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
 
   const handleChangeSearch = (e) => {
     setNumPatente(e.target.value)
-  
   }
 
   const handleClickSearch = () => {
     setRemoveLoading(false)
-    
+
     api.get(`patente_concedida/${numPatente}`)
     .then((resp) => {
       setResultNumPatente([resp.data])
@@ -42,11 +41,7 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
   }
 
   useEffect(() => {
-    if (ictSelected !== "ICTs") {
       setIctSelectedMain(ictSelected)
-    } else {
-      setIctSelectedMain(ictSelected)
-    }
   }, [setIctSelectedMain, ictSelected]);
 
 return(
@@ -57,7 +52,7 @@ return(
                   <BlockContainer>
                       <SearchBarContainer>
                           <SearchInput type="text" placeholder="Digite o número do Pedido" onChange={handleChangeSearch} value={numPatente} /> {/** Entrada de Dados Da Patente */}
-                          <SearchButton onClick={handleClickSearch}>
+                        <SearchButton onClick={handleClickSearch}>
                               <SearchButtonHighlight /> {/** Efeito do Botão Pesquisar */}
                               <SearchButtonText>Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
                           </SearchButton>
