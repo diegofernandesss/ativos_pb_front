@@ -62,13 +62,13 @@ export const NotFoundContainer = tw.div`
 export const GridCards = tw.div`
     grid grid-cols-1 
     sm:grid-cols-2 
-    lg:grid-cols-2 
+    lg:grid-cols-3
     sm:gap-3
 `;
 
 export const Card = tw.div`
     rounded-xl 
-    shadow-lg 
+    shadow-xl
     hover:shadow-xl 
     mb-10 
     sm:mb-0 

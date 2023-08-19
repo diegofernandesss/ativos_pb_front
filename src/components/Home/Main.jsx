@@ -5,8 +5,9 @@ import Pagination from 'react-js-pagination';
 import dayjs from "dayjs";
 import { Container, MainContainer, Select, Title, QueryNotFound, 
          LoadingContainer, NotFoundContainer, Card, GridCards, CardTitle, 
-         CardNumber, CardText, CardDepositorText, StatusBadge, LoadingButton, 
-         Loadingtext, LoadAnimate, DetailsButton, DetailsText, ArrowIcon, PageItem
+         CardNumber, CardText, CardDepositorText, StatusBadge, 
+        //  LoadingButton, Loadingtext, LoadAnimate, 
+         DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
 
 export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading, setSituacaoSearch }) => {
@@ -171,12 +172,12 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                         </div>
 
 
-                                        <div> 
+                                        {/* <div> 
                                             <LoadingButton>
                                                     <Loadingtext>Processando... </Loadingtext>
                                                     <LoadAnimate />
                                             </LoadingButton>
-                                        </div> 
+                                        </div>  */}
                                     </Card>
                                 );
                             })}
