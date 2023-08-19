@@ -23,6 +23,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
+        window.scrollTo(0, 0);
     }
 
     const ChangeSituacao = (e) => {
