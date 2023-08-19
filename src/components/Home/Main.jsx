@@ -8,7 +8,7 @@ import { Container, MainContainer, Select, Title, QueryNotFound,
          Loadingtext, LoadAnimate, DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
 
-export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading }) => {
+export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading, setSituacaoSearch }) => {
 
     const [patentes, setPatentes] = useState([])
     const [activePage, setActivePage] = useState(1);
@@ -23,10 +23,12 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
+        window.scrollTo(0, 0);
     }
 
     const ChangeSituacao = (e) => {
         setSituacao(e.target.value)
+        setSituacaoSearch(e.target.value)
     }
 
     useEffect(() => {
@@ -143,7 +145,9 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
                                         <CardText>Número do pedido</CardText> 
                                         <CardOrderNumber>{patente.numero_pedido}</CardOrderNumber> 
-                                        <CardDepositorText>{patente.depositantes}</CardDepositorText> 
+                                        {patente.depositantes.map((depositante, index) => (
+                                            <CardDepositorText key={index}>{depositante}</CardDepositorText>
+                                        ))}
 
                                         <StatusBadge>Patente Concedida</StatusBadge>
                                      

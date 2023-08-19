@@ -5,7 +5,7 @@ import { HeaderComponent, HeaderBackground, HeaderContainer, SearchBarContainer,
         SearchInput, SearchButton, SearchButtonHighlight, SearchButtonText, 
         SelectContainer, StyledSelect, BlockContainer} from './HeaderCss'
 
-export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoading }) =>{
+export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoading, situacaoSearch }) =>{
   const [icts, setIcts] = useState([])
   const [ictSelected, setIctSelected] = useState("ICTs")
   const [numPatente, setNumPatente] = useState("")
@@ -25,19 +25,29 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
 
   const handleClickSearch = () => {
     setRemoveLoading(false)
-
-    api.get(`patente_concedida/${numPatente}`)
-    .then((resp) => {
-      setResultNumPatente([resp.data])
-      setRemoveLoading(true)
-      
-    })
-    .catch(() => {
-      setResultNumPatente([])
-      setRemoveLoading(true)
-    })
-
-    setNumPatente("")
+    if(situacaoSearch === "concedida"){
+      api.get(`patente_concedida/${numPatente}`)
+      .then((resp) => {
+        setResultNumPatente([resp.data])
+        setRemoveLoading(true)  
+      })
+      .catch(() => {
+        setResultNumPatente([])
+        setRemoveLoading(true)
+      })
+      setNumPatente("")
+    }else{
+      api.get(`patente_pendente/${numPatente}`)
+      .then((resp) => {
+        setResultNumPatente([resp.data])
+        setRemoveLoading(true)  
+      })
+      .catch(() => {
+        setResultNumPatente([])
+        setRemoveLoading(true)
+      })
+      setNumPatente("")
+    }
   }
 
   useEffect(() => {
