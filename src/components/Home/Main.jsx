@@ -20,7 +20,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
     const colors = [
         { border: "border-red-500" },
-        { border: "border-slate-500" },
+        // { border: "border-slate-500" },
     ];
     
     const handlePageChange = (pageNumber) => {
@@ -114,7 +114,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
             <Container>
                 <MainContainer>
                     <div>
-                        <Select>
+                        <Select >
                             <option value="option1">Categorias</option>
                             <option value="option1">Option 1</option>
                             <option value="option2">Option 2</option>
@@ -141,11 +141,11 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             patentes.map((patente, index) => {
                                 const color = colors[index % colors.length];    
                                     return (
-                                        <Card key={index} className={`${color.border}`} data-aos="fade-up-right"> 
+                                        <Card key={index} className={` ${color.border}`} data-aos="fade-up-right"> 
 
                                         <CardTitle>{patente.titulo}</CardTitle>
 
-                                        {situacao === "pendente" ? <CardText>Data Do Depósito:</CardText> :  "" }
+                                        {situacao === "pendente" ? <CardText >Data Do Depósito:</CardText> :  "" }
                                         {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_deposito).format("DD/MM/YYYY")}</CardNumber> : ""}
 
                                         {situacao === "pendente" ? <CardText>Data Do Protocolo:</CardText> :  "" }
