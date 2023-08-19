@@ -143,7 +143,9 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
                                         <CardText>Número do pedido</CardText> 
                                         <CardOrderNumber>{patente.numero_pedido}</CardOrderNumber> 
-                                        <CardDepositorText>{patente.depositantes}</CardDepositorText> 
+                                        {patente.depositantes.map((depositante, index) => (
+                                            <CardDepositorText key={index}>{depositante}</CardDepositorText>
+                                        ))}
 
                                         <StatusBadge>Patente Concedida</StatusBadge>
                                      

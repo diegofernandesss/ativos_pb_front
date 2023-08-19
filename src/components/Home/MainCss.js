@@ -99,13 +99,14 @@ export const CardOrderNumber = tw.p`
 export const CardDepositorText = tw.p`
     font-semibold 
     ml-4
-    pb-4
+    last:pb-4
 `;
 
 export const StatusBadge = tw.div`
     text-sm 
     ml-4 
-    mr-4 
+    mr-4
+    mt-4 
     py-2 
     px-4 
     rounded-full 
