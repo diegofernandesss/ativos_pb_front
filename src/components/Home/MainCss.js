@@ -101,6 +101,7 @@ export const CardDepositorText = tw.p`
     ml-4
     mb-2
     mt-1
+    text-stone-500
 `;
 
 export const StatusBadge = tw.div`

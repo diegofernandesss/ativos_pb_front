@@ -150,9 +150,10 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                         {situacao === "pendente" ? <CardText>Data Do Protocolo:</CardText> :  "" }
                                         {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_protocolo).format("DD/MM/YYYY")}</CardNumber> : ""}
 
-                                        <CardText>Número do pedido</CardText> 
+                                        <CardText>Número do pedido:</CardText> 
                                         <CardNumber>{patente.numero_pedido}</CardNumber>
 
+                                        <CardText>Depositante:</CardText>
                                         {patente.depositantes.map((depositante, index) => (
                                             <CardDepositorText key={index}>{depositante}</CardDepositorText>
                                         ))}
