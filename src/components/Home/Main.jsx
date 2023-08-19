@@ -14,13 +14,12 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [activePage, setActivePage] = useState(1);
     const [totPatentes, setTotPatentes] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-    const [situacao, setSituacao] = useState("")
+    const [situacao, setSituacao] = useState("concedida")
 
     const colors = [
         { border: "border-red-500" },
         { border: "border-slate-500" },
     ];
-    
     
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
@@ -51,7 +50,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                 setIsLoading(false);
             })
         }
-        
     }, [activePage, setRemoveLoading, situacao]) 
     
     useEffect(() => {
@@ -63,24 +61,44 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         setRemoveLoading(false);
         setIsLoading(true);
         setPatentes([]);
-        if(ictSelected !== "ICTs"){
-            api.get(`patentes_concedidas/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
-            .then((resp) => {
-                setPatentes(resp.data.patentes)
-                setTotPatentes(resp.data.number_patentes)
-                setRemoveLoading(true);
-                setIsLoading(false);
-            })
-        }else {
-            api.get(`patentes_concedidas?page=${activePage}&limit=${max_items}`)
-            .then((resp) => {
-                setPatentes(resp.data.patentes);
-                setTotPatentes(resp.data.number_patentes)
-                setRemoveLoading(true);
-                setIsLoading(false);
-            })
+        if(situacao === "concedida"){
+            if(ictSelected !== "ICTs"){
+                api.get(`patentes_concedidas/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
+                .then((resp) => {
+                    setPatentes(resp.data.patentes)
+                    setTotPatentes(resp.data.number_patentes)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+            }else {
+                api.get(`patentes_concedidas?page=${activePage}&limit=${max_items}`)
+                .then((resp) => {
+                    setPatentes(resp.data.patentes);
+                    setTotPatentes(resp.data.number_patentes)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+            }
+        }else{
+            if(ictSelected !== "ICTs"){
+                api.get(`patentes_pendentes/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
+                .then((resp) => {
+                    setPatentes(resp.data.patentes)
+                    setTotPatentes(resp.data.number_patentes)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+            }else {
+                api.get(`patentes_pendentes?page=${activePage}&limit=${max_items}`)
+                .then((resp) => {
+                    setPatentes(resp.data.patentes)
+                    setTotPatentes(resp.data.number_patentes)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+            }
         }
-    }, [activePage, ictSelected, setRemoveLoading]);
+    }, [activePage, ictSelected, setRemoveLoading, situacao]);
 
     useEffect(() => {
         setPatentes(resultNumPatente)
@@ -98,9 +116,9 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="option2">Option 2</option>
                             <option value="option3">Option 3</option>
                         </Select>
-                        <Select onChange={ChangeSituacao}>
-                            <option value="Situacao">Situação</option>
-                            <option value="concedida" selected>Concedida</option>
+                        <Select value={situacao} onChange={ChangeSituacao}>
+                            <option value="Situacao" disabled>Situação</option>
+                            <option value="concedida">Concedida</option>
                             <option value="pendente">Pendente</option>
                         </Select>
                     </div>
