@@ -20,7 +20,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
     const colors = [
         { border: "border-red-500" },
-        // { border: "border-slate-500" },
     ];
     
     const handlePageChange = (pageNumber) => {

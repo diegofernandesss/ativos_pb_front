@@ -26,7 +26,6 @@ export const NavBar = () => {
         setMenuOpen(!menuOpen);
     };
 
-
 return (
     <>
         <NavBackground>

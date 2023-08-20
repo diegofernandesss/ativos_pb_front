@@ -31,12 +31,12 @@ export const Main = () => {
     const { image, alt } = heroData;
 
     return (
-        <MainContainer>
+        <MainContainer >
             <MainSection>
                 <Container>
                     <FlexContainer>
-                        <TextContainer>
-                            <StyledH1>Objetivo</StyledH1>  {/** Primeiro Título */}
+                        <TextContainer data-aos="zoom-in-down">
+                            <StyledH1 >Objetivo</StyledH1>  {/** Primeiro Título */}
                             {objective.map((phrases, index)=> (
                                 <div key={index}>
                                     <StyledP > {/** Frase Do Título do Projeto */}
@@ -45,7 +45,7 @@ export const Main = () => {
                                 </div> 
                             ))}
                         </TextContainer>
-                        <ImageContainer>
+                        <ImageContainer data-aos="zoom-in-up" >
                             <StyledImg src={image} alt={alt} />
                         </ImageContainer>
                     </FlexContainer>
@@ -54,9 +54,9 @@ export const Main = () => {
 
             <MainSection>
                 <Container>
-                    <FlexContainer>
-                        <TextContainer>
-                            <StyledH1>Equipe PETI Desenvolvimento</StyledH1>  {/** Segundo Título */}
+                    <FlexContainer >
+                        <TextContainer  data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                            <StyledH1 >Equipe PETI Desenvolvimento</StyledH1>  {/** Segundo Título */}
                             {team.map((phrases, index) => ( 
                                 <div key={index}>
                                     <StyledP > {/** Frase da Equipe de Desenvolvimento */}
@@ -65,10 +65,10 @@ export const Main = () => {
                                 </div>
                             ))}
                         </TextContainer>
-                        <GridContainer>
+                        <GridContainer >
                             {equipesImg.map((member, index) => (
                                 <div key={index}>
-                                    <StyledImg src={member.image} alt={member.alt} /> {/** Imagens em Grid - 4 Imagens Equipe*/}
+                                    <StyledImg data-aos="fade-up" data-aos-anchor-placement="center-bottom"  src={member.image} alt={member.alt} /> {/** Imagens em Grid - 4 Imagens Equipe*/}
                                 </div>
                             ))}
                         </GridContainer>
