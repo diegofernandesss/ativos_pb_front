@@ -1,17 +1,18 @@
 import '../index.css'
 
 import {
+  NavBackground,
   NavContainer,
   Nav,
-  NavContent,
+  NavLinkMobile,
   Logo,
-  NavLinks,
   NavLink,
   MobileMenuButton,
   LogoHighligh
 } from './NavBarCss'
-import { Link } from 'react-router-dom';
-import { SlMenu } from 'react-icons/sl'
+import { FiMenu, FiX } from 'react-icons/fi';
+import { useState } from 'react';
+
 export const NavBar = () => {
 
   const Links = [
@@ -19,29 +20,55 @@ export const NavBar = () => {
     {name: "Sobre", link:"/sobre"}
   ]
 
-  return (
+  const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    };
+
+
+return (
     <>
-      <NavContainer>
-        <Nav>
-          <NavContent>
-          <Link to="/home"><Logo>Ativos<LogoHighligh> PB</LogoHighligh></Logo></Link> {/** Nome do Projeto */}
-          <NavLinks>
-            {
-              Links.map((link, index) => (
-                <NavLink key={index} to={link.link}> 
-                  {link.name} 
-                </NavLink>  // Links para acesso a uma página
-            ))}
-          </NavLinks>
-          
-            <div className="sm:hidden">
-              <MobileMenuButton type="button"> {/** Botão de Menu Hambúrguer no Mobile*/}
-                <SlMenu className='text-white w-5 h-5'/>
-              </MobileMenuButton>
-            </div>
-          </NavContent>
-        </Nav>
-      </NavContainer>
+        <NavBackground>
+            <NavContainer>
+                <Nav>
+                    <Logo>
+                        Ativos<LogoHighligh> PB</LogoHighligh>
+                    </Logo>
+
+                <div className="hidden md:block">
+                    <div className="ml-10 flex items-baseline space-x-4">
+                    {Links.map((link, index) => (
+                        <NavLink key={index} to={link.link} >
+                          {link.name}
+                        </NavLink>
+                    ))}
+                    </div>
+                </div>
+                <div className="md:hidden flex items-center "> 
+                    <MobileMenuButton onClick={toggleMenu} className="ml-4">
+                        {menuOpen ? (
+                                <FiX className="h-6 w-6 text-white" />
+                            ) : ( 
+                                <FiMenu className="h-6 w-6 text-white" />
+                            )}
+                    </MobileMenuButton>
+                </div>
+                </Nav>
+            </NavContainer>
+            {menuOpen && (
+                <div className="md:hidden">
+                    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                        {Links.map((link, index) => (
+                        <NavLinkMobile key={index} to={link.link}>
+                            {link.name}
+                        </NavLinkMobile>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </NavBackground>
     </>
+
   );
 };

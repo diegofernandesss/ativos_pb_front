@@ -2,33 +2,31 @@ import tw from "tailwind-styled-components"
 import { Link } from 'react-router-dom';
 
 
-export const NavContainer = tw.div`
+export const NavBackground = tw.div`
   bg-gray-900
 `;
 
-export const Nav = tw.nav`
-  bg-white 
-  border-gray-700 
-  bg-slate-900 
-  py-2.5 
-  sm:container 
-  sm:mx-auto
-`;
-
-export const NavContent = tw.div`
-  z-10 
-  xl:max-w-screen-xl 
-  sm:flex 
-  sm:justify-between 
-  sm:items-center 
-  py-2 
-  flex 
-  flex-wrap 
+export const NavContainer = tw.nav`
+  mx-auto 
+  lg:px-5 
+  px-5 
+  w-full 
+  h-20 
   items-center 
   justify-between 
   max-w-screen-xl 
-  px-4 
-  mx-auto
+  pt-2 
+  sm:container 
+  sm:mx-auto 
+  xl:max-w-screen-xl 
+`;
+
+
+export const Nav = tw.nav`
+  flex 
+  items-center 
+  justify-between 
+  h-16
 `;
 
 export const Logo = tw.h1`
@@ -69,9 +67,19 @@ export const NavLink = tw(Link)`
   cursor-pointer 
   text-white 
   text-sm
+`;
 
+
+export const NavLinkMobile = tw(Link)`
+  text-gray-300 
+  hover:text-white 
+  block 
+  px-3 
+  py-2 
+  rounded-md 
+  text-base 
+  font-medium
 `;
 
 export const MobileMenuButton = tw.button`
-  focus:outline-none
 `;
