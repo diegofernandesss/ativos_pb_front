@@ -12,6 +12,7 @@ import {
 } from './NavBarCss'
 import { FiMenu, FiX } from 'react-icons/fi';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
 
@@ -31,9 +32,11 @@ return (
         <NavBackground>
             <NavContainer>
                 <Nav>
-                    <Logo>
-                        Ativos<LogoHighligh> PB</LogoHighligh>
-                    </Logo>
+                    <Link to="/home">
+                        <Logo>
+                            Ativos<LogoHighligh> PB</LogoHighligh>
+                        </Logo>
+                    </Link>
 
                     <div className="hidden md:block">
                         <div className="ml-10 flex items-baseline space-x-4">

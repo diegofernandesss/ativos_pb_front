@@ -47,9 +47,19 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
         setRemoveLoading(true)
       })
       setNumPatente("")
+    }else if(situacaoSearch === "regiSoftware"){
+      api.get(`registro_software/${numPatente}`)
+      .then((resp) => {
+        setResultNumPatente([resp.data])
+        setRemoveLoading(true)  
+      })
+      .catch(() => {
+        setResultNumPatente([])
+        setRemoveLoading(true)
+      })
+      setNumPatente("")
     }
   }
-
   useEffect(() => {
       setIctSelectedMain(ictSelected)
   }, [setIctSelectedMain, ictSelected]);

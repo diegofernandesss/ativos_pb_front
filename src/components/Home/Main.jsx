@@ -44,11 +44,19 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                 setRemoveLoading(true);
                 setIsLoading(false);
             })
-        }else {
+        }else if (situacao === "concedida"){
             api.get(`patentes_concedidas?page=${activePage}&limit=${max_items}`)
             .then((resp) => {
                 setPatentes(resp.data.patentes);
                 setTotPatentes(resp.data.number_patentes)
+                setRemoveLoading(true);
+                setIsLoading(false);
+            })
+        }else if (situacao === "regiSoftware"){
+            api.get(`registros_softwares?page=${activePage}&limit=${max_items}`)
+            .then((resp) => {
+                setPatentes(resp.data.software_records);
+                setTotPatentes(resp.data.registration_number)
                 setRemoveLoading(true);
                 setIsLoading(false);
             })
@@ -82,7 +90,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                     setIsLoading(false);
                 })
             }
-        }else{
+        }else if (situacao === "pendente") {
             if(ictSelected !== "ICTs"){
                 api.get(`patentes_pendentes/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
                 .then((resp) => {
@@ -96,6 +104,30 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                 .then((resp) => {
                     setPatentes(resp.data.patentes)
                     setTotPatentes(resp.data.number_patentes)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+            }
+        }else if (situacao === "regiSoftware"){
+            if(ictSelected !== "ICTs"){
+                api.get(`registros_softwares/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
+                .then((resp) => {
+                    setPatentes(resp.data.software_records)
+                    setTotPatentes(resp.data.registration_number)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+                .catch(() => {
+                    setPatentes([])
+                    setTotPatentes(0)
+                    setRemoveLoading(true);
+                    setIsLoading(false);
+                })
+            }else {
+                api.get(`registros_softwares?page=${activePage}&limit=${max_items}`)
+                .then((resp) => {
+                    setPatentes(resp.data.software_records)
+                    setTotPatentes(resp.data.registration_number)
                     setRemoveLoading(true);
                     setIsLoading(false);
                 })
@@ -123,6 +155,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="Situacao" disabled>Situação</option>
                             <option value="concedida">Concedida</option>
                             <option value="pendente">Pendente</option>
+                            <option value="regiSoftware">Registro de Software</option>
                         </Select>
                     </div>
                     
@@ -152,11 +185,22 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
                                         <CardText>Número do pedido:</CardText> 
                                         <CardNumber>{patente.numero_pedido}</CardNumber>
-
-                                        <CardText>Depositante:</CardText>
-                                        {patente.depositantes.map((depositante, index) => (
-                                            <CardDepositorText key={index}>{depositante}</CardDepositorText>
-                                        ))}
+                                        {situacao !== "regiSoftware" ? <CardText>Depositante:</CardText>
+                                         : 
+                                        <CardText>Titulares:</CardText>}
+                                        {
+                                            patente.depositantes ? patente.depositantes.map((depositante, index) => (
+                                                <CardDepositorText key={index}>{depositante}</CardDepositorText>
+                                            ))
+                                        :
+                                            patente.nomes_titulares ? patente.nomes_titulares.map((titular, index) => (
+                                                <CardDepositorText key={index}>{titular}</CardDepositorText>
+                                            ))
+                                            :
+                                            patente.software_registration.nomes_titulares.map((titular, index) => (
+                                                <CardDepositorText key={index}>{titular}</CardDepositorText>
+                                            ))
+                                        }
 
                                         {situacao==="pendente" ?  
                                         <StatusBadge >Patente Pendente</StatusBadge> : 
