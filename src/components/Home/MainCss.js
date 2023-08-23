@@ -19,6 +19,7 @@ export const MainContainer = tw.main`
 export const Select = tw.select`
     w-50 
     h-12 
+    mt-3
     bg-white-500 
     border border-gray-300 
     rounded-md 
