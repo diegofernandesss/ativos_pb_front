@@ -30,34 +30,37 @@ export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoadi
       .then((resp) => {
         setResultNumPatente([resp.data])
         setRemoveLoading(true)  
+        setNumPatente("")
       })
       .catch(() => {
         setResultNumPatente([])
         setRemoveLoading(true)
       })
-      setNumPatente("")
+      
     }else if(situacaoSearch === "pendente"){
       api.get(`patente_pendente/${numPatente}`)
       .then((resp) => {
         setResultNumPatente([resp.data])
         setRemoveLoading(true)  
+        setNumPatente("")
       })
       .catch(() => {
         setResultNumPatente([])
         setRemoveLoading(true)
       })
-      setNumPatente("")
+      
     }else if(situacaoSearch === "regiSoftware"){
       api.get(`registro_software/${numPatente}`)
       .then((resp) => {
         setResultNumPatente([resp.data])
         setRemoveLoading(true)  
+        setNumPatente("")
       })
       .catch(() => {
         setResultNumPatente([])
         setRemoveLoading(true)
       })
-      setNumPatente("")
+      
     }
   }
   useEffect(() => {
