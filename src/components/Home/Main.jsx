@@ -17,8 +17,12 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [totPatentes, setTotPatentes] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [situacao, setSituacao] = useState("concedida")
-    const [secoes, setSecoes] = useState([])
     const [secaoSelected, setSecaoSelected] = useState(0)
+    const [secoes, setSecoes] = useState([])
+    const [subSecaoSelected, setSubSecaoSelected] = useState(0)
+    const [subSecoes, setSubSecoes] = useState([])
+    const [codigoIpcSelected, setCodigoIpcSelected] = useState("")
+    const [codigosIpc, setCodigosIpc] = useState([])
     
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
@@ -33,6 +37,17 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const ChangeSecao = (e) => {
         setSecaoSelected(e.target.value)
     }
+
+    const ChangeSubSecao = (e) => {
+        setSubSecaoSelected(e.target.value)
+    }
+
+    const ChangeCodigoIPC = (e) => {
+        setCodigoIpcSelected(e.target.value)
+    }
+    useEffect(() => {
+        setActivePage(1);
+    }, [ictSelected, situacao]);
 
     useEffect(() => {
         setRemoveLoading(false);
@@ -64,10 +79,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
             })
         }
     }, [activePage, setRemoveLoading, situacao]) 
-    
-    useEffect(() => {
-        setActivePage(1);
-    }, [ictSelected]);
 
     const max_items = 6
     useEffect(() => {
@@ -146,31 +157,45 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         api.get("classificacoes_ipc")
         .then((resp) => {
             setSecoes(resp.data)
+            setCodigoIpcSelected([])
         })
     }, [])
 
-    // useEffect(() => {
-    //     api.get(`classificacoes_ipc/sub_secao/${}`)
-    // }, [secoes])
-    // console.log(secaoSelected);
+    useEffect(() => {
+        api.get(`classificacoes_ipc/sub_secao/${secaoSelected}`)
+        .then((resp) => setSubSecoes(resp.data))
+    }, [secaoSelected, secoes])
+
+    useEffect(() => {
+        api.get(`classificacoes_ipc/codigos_ipc/${subSecaoSelected}`)
+        .then((resp) => setCodigosIpc(resp.data));
+    }, [subSecoes, subSecaoSelected])
+
+    useEffect(() => {
+        setRemoveLoading(false);
+        setIsLoading(true);
+        api.get(`patentes_concedidas/ipc/${codigoIpcSelected}`)
+        .then((resp) => {
+            setPatentes(resp.data.patentesFiltro)
+            setTotPatentes(resp.data.number_patentes)
+            setRemoveLoading(true);
+            setIsLoading(false);
+        })
+        .catch(() => {})
+    }, [codigoIpcSelected, setRemoveLoading])
 
     return(
         <>
             <Container>
                 <MainContainer>
                     <div>
-                        <Select >
-                            <option value="option1">Categorias</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </Select>
                         <Select value={situacao} onChange={ChangeSituacao}>
                             <option value="Situacao" disabled>Situação</option>
                             <option value="concedida">Concedida</option>
                             <option value="pendente">Pendente</option>
                             <option value="regiSoftware">Registro de Software</option>
                         </Select>
+                        {situacao === "concedida" && 
                         <Select value={secaoSelected} onChange={ChangeSecao}>
                             <option value="secao">Seção</option>
                             {secoes.map((secao, index) => (
@@ -179,18 +204,26 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                 </option>
                             ))}
                         </Select>
-                        <Select >
-                            <option value="option1">Sub Seção lsmdsmd assamsaç sa,saçs,a</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
+                        }
+                        {secaoSelected !== 0 && situacao === "concedida" && 
+                        <Select onChange={ChangeSubSecao}>
+                            <option value="subSecao">Sub Seção</option>
+                            {subSecoes.map((subSecao, index) => (
+                                <option key={index} value={subSecao.id}>
+                                    {subSecao.nome}
+                                </option>
+                            ))}
                         </Select>
-                        <Select >
-                            <option value="option1">Código IPC</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
+                        }
+                        {subSecaoSelected !== 0 && situacao === "concedida" && 
+                        <Select onChange={ChangeCodigoIPC}>
+                            <option value="codigoIPC">Códigos IPC</option>
+                            {codigosIpc.codigos && codigosIpc.codigos.map((codigoIPC, index) => (
+                                <option key={index} value={codigoIPC}>{codigoIPC}</option>
+                            ))}
                         </Select>
+                        }
+                        
                     </div>
                     
                     <div>
