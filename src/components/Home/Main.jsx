@@ -17,6 +17,8 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [totPatentes, setTotPatentes] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [situacao, setSituacao] = useState("concedida")
+    const [secoes, setSecoes] = useState([])
+    const [secaoSelected, setSecaoSelected] = useState(0)
     
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
@@ -26,6 +28,10 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const ChangeSituacao = (e) => {
         setSituacao(e.target.value)
         setSituacaoSearch(e.target.value)
+    }
+
+    const ChangeSecao = (e) => {
+        setSecaoSelected(e.target.value)
     }
 
     useEffect(() => {
@@ -136,6 +142,18 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         setTotPatentes(1)  
     }, [resultNumPatente])
 
+    useEffect(() => {
+        api.get("classificacoes_ipc")
+        .then((resp) => {
+            setSecoes(resp.data)
+        })
+    }, [])
+
+    // useEffect(() => {
+    //     api.get(`classificacoes_ipc/sub_secao/${}`)
+    // }, [secoes])
+    // console.log(secaoSelected);
+
     return(
         <>
             <Container>
@@ -153,20 +171,22 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="pendente">Pendente</option>
                             <option value="regiSoftware">Registro de Software</option>
                         </Select>
+                        <Select value={secaoSelected} onChange={ChangeSecao}>
+                            <option value="secao">Seção</option>
+                            {secoes.map((secao, index) => (
+                                <option key={index} value={secao.id}>
+                                    {secao.nome}
+                                </option>
+                            ))}
+                        </Select>
                         <Select >
-                            <option value="option1">S3Cao</option>
+                            <option value="option1">Sub Seção</option>
                             <option value="option1">Option 1</option>
                             <option value="option2">Option 2</option>
                             <option value="option3">Option 3</option>
                         </Select>
                         <Select >
-                            <option value="option1">Sub</option>
-                            <option value="option1">Option 1</option>
-                            <option value="option2">Option 2</option>
-                            <option value="option3">Option 3</option>
-                        </Select>
-                        <Select >
-                            <option value="option1">IPC</option>
+                            <option value="option1">Código IPC</option>
                             <option value="option1">Option 1</option>
                             <option value="option2">Option 2</option>
                             <option value="option3">Option 3</option>
