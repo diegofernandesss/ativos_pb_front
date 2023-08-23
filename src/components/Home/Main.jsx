@@ -154,22 +154,22 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="regiSoftware">Registro de Software</option>
                         </Select>
                         <Select >
-                                <option value="option1">S3Cao</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
+                            <option value="option1">S3Cao</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
                         </Select>
                         <Select >
-                                <option value="option1">Sub</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
+                            <option value="option1">Sub</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
                         </Select>
                         <Select >
-                                <option value="option1">IPC</option>
-                                <option value="option1">Option 1</option>
-                                <option value="option2">Option 2</option>
-                                <option value="option3">Option 3</option>
+                            <option value="option1">IPC</option>
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
                         </Select>
                     </div>
                     
