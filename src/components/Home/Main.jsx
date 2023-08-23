@@ -17,10 +17,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [totPatentes, setTotPatentes] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const [situacao, setSituacao] = useState("concedida")
-
-    const colors = [
-        { border: "border-red-500" },
-    ];
     
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
@@ -170,24 +166,22 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                     )}
                     {removeLoading && <GridCards> 
                         {patentes.length > 0 && patentes !== [] &&
-                            patentes.map((patente, index) => {
-                                const color = colors[index % colors.length];    
+                            patentes.map((patente, index) => {  
                                     return (
-                                        <Card key={index} className={` ${color.border}`} data-aos="fade-up-right"> 
+                                        <Card key={index} className="border-red-500" data-aos="fade-up-right"> 
+                                        
+                                        {situacao === "regiSoftware" ? <CardTitle>{patente.titulo_programa}</CardTitle> : <CardTitle>{patente.titulo}</CardTitle>}
 
-                                        <CardTitle>{patente.titulo}</CardTitle>
-
-                                        {situacao === "pendente" ? <CardText >Data Do Depósito:</CardText> :  "" }
-                                        {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_deposito).format("DD/MM/YYYY")}</CardNumber> : ""}
+                                        {situacao !== "concedida" ? <CardText>Data Do Depósito:</CardText> :  "" }
+                                        {situacao !== "concedida" ? <CardNumber>{dayjs(patente.data_deposito).format("DD/MM/YYYY")}</CardNumber> : ""}
 
                                         {situacao === "pendente" ? <CardText>Data Do Protocolo:</CardText> :  "" }
                                         {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_protocolo).format("DD/MM/YYYY")}</CardNumber> : ""}
 
                                         <CardText>Número do pedido:</CardText> 
                                         <CardNumber>{patente.numero_pedido}</CardNumber>
-                                        {situacao !== "regiSoftware" ? <CardText>Depositante:</CardText>
-                                         : 
-                                        <CardText>Titulares:</CardText>}
+
+                                        {situacao !== "regiSoftware" ? <CardText>Depositante:</CardText> : <CardText>Titulares:</CardText>}
                                         {
                                             patente.depositantes ? patente.depositantes.map((depositante, index) => (
                                                 <CardDepositorText key={index}>{depositante}</CardDepositorText>
@@ -202,9 +196,8 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                             ))
                                         }
 
-                                        {situacao==="pendente" ?  
-                                        <StatusBadge >Patente Pendente</StatusBadge> : 
-                                        <StatusBadge $primary>Patente Concedida</StatusBadge> }
+                                        {situacao === "pendente" && (<StatusBadge>Patente Pendente</StatusBadge>)}
+                                        {situacao !== "pendente" && situacao !== "regiSoftware" && (<StatusBadge $primary>Patente Concedida</StatusBadge>)}
                                      
 
                                         <div>
