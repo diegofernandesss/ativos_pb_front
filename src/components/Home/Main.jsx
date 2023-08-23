@@ -178,7 +178,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                         {situacao === "pendente" ? <CardText>Data Do Protocolo:</CardText> :  "" }
                                         {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_protocolo).format("DD/MM/YYYY")}</CardNumber> : ""}
 
-                                        <CardText>Número do pedido:</CardText> 
+                                        <CardText>Número Do Pedido:</CardText> 
                                         <CardNumber>{patente.numero_pedido}</CardNumber>
 
                                         {situacao !== "regiSoftware" ? <CardText>Depositante:</CardText> : <CardText>Titulares:</CardText>}
