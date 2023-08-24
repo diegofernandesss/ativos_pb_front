@@ -120,7 +120,7 @@ export const StatusBadge = tw.div`
     w-40
 `;
 
-export const DetailsButton = tw.div`
+export const DetailsButton = tw.button`
     text-sm 
     ml-4 
     mr-4 

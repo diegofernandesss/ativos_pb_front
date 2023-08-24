@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Loading } from '../../pages';
 import { api } from '../../services/api';
 import Pagination from 'react-js-pagination';
@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 import { Container, MainContainer, Select, Title, QueryNotFound, 
          LoadingContainer, NotFoundContainer, Card, GridCards, CardTitle, 
          CardNumber, CardText, CardDepositorText, StatusBadge, 
-        //  LoadingButton, Loadingtext, LoadAnimate, 
+         LoadingButton, Loadingtext, LoadAnimate, 
          DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
 
@@ -23,10 +23,21 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [subSecoes, setSubSecoes] = useState([])
     const [codigoIpcSelected, setCodigoIpcSelected] = useState("")
     const [codigosIpc, setCodigosIpc] = useState([])
-    
+    const[loadingPatentDetails, setLoadingPatentDetails] = useState(false)
+
+    const isFirstRender = useRef(true);
+
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
         window.scrollTo(0, 0);
+    }
+    const handleClickDetails = (cardID) => {
+        setLoadingPatentDetails(true)
+        api.get(`patente_concedida/${cardID}`)
+        .then((resp) => {
+            setLoadingPatentDetails(false)
+            console.log(resp.data);
+        })
     }
 
     const ChangeSituacao = (e) => {
@@ -57,14 +68,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
             api.get(`patentes_pendentes?page=${activePage}&limit=${max_items}`)
             .then((resp) => {
                 setPatentes(resp.data.patentes)
-                setTotPatentes(resp.data.number_patentes)
-                setRemoveLoading(true);
-                setIsLoading(false);
-            })
-        }else if (situacao === "concedida"){
-            api.get(`patentes_concedidas?page=${activePage}&limit=${max_items}`)
-            .then((resp) => {
-                setPatentes(resp.data.patentes);
                 setTotPatentes(resp.data.number_patentes)
                 setRemoveLoading(true);
                 setIsLoading(false);
@@ -157,7 +160,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         api.get("classificacoes_ipc")
         .then((resp) => {
             setSecoes(resp.data)
-            setCodigoIpcSelected([])
         })
     }, [])
 
@@ -172,6 +174,28 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     }, [subSecoes, subSecaoSelected])
 
     useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        setRemoveLoading(false);
+        setIsLoading(true);
+        
+        api.get(`patentes_concedidas/classificacao_ipc/cod_subsecao/${subSecaoSelected}`)
+        .then((resp) => {
+            setPatentes(resp.data.patentes)
+            setTotPatentes(resp.data.number_patentes)
+            setRemoveLoading(true);
+            setIsLoading(false);
+        })
+    }, [setRemoveLoading, subSecaoSelected])
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
         setRemoveLoading(false);
         setIsLoading(true);
         api.get(`patentes_concedidas/ipc/${codigoIpcSelected}`)
@@ -195,7 +219,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="pendente">Pendente</option>
                             <option value="regiSoftware">Registro de Software</option>
                         </Select>
-                        {situacao === "concedida" && 
+                        {situacao === "concedida" && ictSelected === "ICTs" && 
                         <Select value={secaoSelected} onChange={ChangeSecao}>
                             <option value="secao">Seção</option>
                             {secoes.map((secao, index) => (
@@ -205,7 +229,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             ))}
                         </Select>
                         }
-                        {secaoSelected !== 0 && situacao === "concedida" && 
+                        {secaoSelected !== 0 && situacao === "concedida" && ictSelected === "ICTs" && 
                         <Select onChange={ChangeSubSecao}>
                             <option value="subSecao">Sub Seção</option>
                             {subSecoes.map((subSecao, index) => (
@@ -215,7 +239,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             ))}
                         </Select>
                         }
-                        {subSecaoSelected !== 0 && situacao === "concedida" && 
+                        {subSecaoSelected !== 0 && situacao === "concedida" && ictSelected === "ICTs" && 
                         <Select onChange={ChangeCodigoIPC}>
                             <option value="codigoIPC">Códigos IPC</option>
                             {codigosIpc.codigos && codigosIpc.codigos.map((codigoIPC, index) => (
@@ -272,19 +296,19 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                      
 
                                         <div>
-                                            <DetailsButton>
+                                            {!loadingPatentDetails && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido)}>
                                                     <DetailsText>Mais Detalhes</DetailsText>
                                                     <ArrowIcon />
-                                            </DetailsButton>
+                                            </DetailsButton>}
                                         </div>
 
 
-                                        {/* <div> 
+                                        {loadingPatentDetails && <div> 
                                             <LoadingButton>
                                                     <Loadingtext>Processando... </Loadingtext>
                                                     <LoadAnimate />
                                             </LoadingButton>
-                                        </div>  */}
+                                        </div>} 
                                     </Card>
                                 );
                             })}
