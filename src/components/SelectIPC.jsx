@@ -56,7 +56,8 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
             setRemoveLoading(true);
             setIsLoading(false);
         })
-    }, [activePage, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes, subSecaoSelected])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes, subSecaoSelected])
 
     useEffect(() => {
         if (isFirstRender.current) {
@@ -74,7 +75,8 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
             setIsLoading(false);
         })
         .catch(() => {})
-    }, [activePage, codigoIpcSelected, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [codigoIpcSelected, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes])
 
     return (
         <>
