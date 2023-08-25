@@ -3,6 +3,8 @@ import { Loading } from '../../pages';
 import { api } from '../../services/api';
 import Pagination from 'react-js-pagination';
 import { SelectIPC } from '../SelectIPC';
+import { LoadingCardICT } from '../LoadingCardICT';
+import { LoadingCard } from '../LoadingCard';
 import dayjs from "dayjs";
 import { Container, MainContainer, Select, Title, QueryNotFound, 
          LoadingContainer, NotFoundContainer, Card, GridCards, CardTitle, 
@@ -12,7 +14,6 @@ import { Container, MainContainer, Select, Title, QueryNotFound,
 } from './MainCss';
 
 export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading, setSituacaoSearch }) => {
-
     const [patentes, setPatentes] = useState([])
     const [activePage, setActivePage] = useState(1);
     const [totPatentes, setTotPatentes] = useState(0)
@@ -47,96 +48,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         setActivePage(1);
     }, [ictSelected, situacao]);
 
-    useEffect(() => {
-        setRemoveLoading(false);
-        setIsLoading(true);
-        setPatentes([]);
-        if(situacao === "pendente"){
-            api.get(`patentes_pendentes?page=${activePage}&limit=${max_items}`)
-            .then((resp) => {
-                setPatentes(resp.data.patentes)
-                setTotPatentes(resp.data.number_patentes)
-                setRemoveLoading(true);
-                setIsLoading(false);
-            })
-        }else if (situacao === "regiSoftware"){
-            api.get(`registros_softwares?page=${activePage}&limit=${max_items}`)
-            .then((resp) => {
-                setPatentes(resp.data.software_records);
-                setTotPatentes(resp.data.registration_number)
-                setRemoveLoading(true);
-                setIsLoading(false);
-            })
-        }
-    }, [activePage, setRemoveLoading, situacao]) 
-
     const max_items = 6
-    useEffect(() => {
-        setRemoveLoading(false);
-        setIsLoading(true);
-        setPatentes([]);
-        if(situacao === "concedida"){
-            if(ictSelected !== "ICTs"){
-                api.get(`patentes_concedidas/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
-                .then((resp) => {
-                    setPatentes(resp.data.patentes)
-                    setTotPatentes(resp.data.number_patentes)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-            }else {
-                api.get(`patentes_concedidas?page=${activePage}&limit=${max_items}`)
-                .then((resp) => {
-                    setPatentes(resp.data.patentes);
-                    setTotPatentes(resp.data.number_patentes)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-            }
-        }else if (situacao === "pendente") {
-            if(ictSelected !== "ICTs"){
-                api.get(`patentes_pendentes/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
-                .then((resp) => {
-                    setPatentes(resp.data.patentes)
-                    setTotPatentes(resp.data.number_patentes)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-            }else {
-                api.get(`patentes_pendentes?page=${activePage}&limit=${max_items}`)
-                .then((resp) => {
-                    setPatentes(resp.data.patentes)
-                    setTotPatentes(resp.data.number_patentes)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-            }
-        }else if (situacao === "regiSoftware"){
-            if(ictSelected !== "ICTs"){
-                api.get(`registros_softwares/ict/${ictSelected}?page=${activePage}&limit=${max_items}`)
-                .then((resp) => {
-                    setPatentes(resp.data.software_records)
-                    setTotPatentes(resp.data.registration_number)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-                .catch(() => {
-                    setPatentes([])
-                    setTotPatentes(0)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-            }else {
-                api.get(`registros_softwares?page=${activePage}&limit=${max_items}`)
-                .then((resp) => {
-                    setPatentes(resp.data.software_records)
-                    setTotPatentes(resp.data.registration_number)
-                    setRemoveLoading(true);
-                    setIsLoading(false);
-                })
-            }
-        }
-    }, [activePage, ictSelected, setRemoveLoading, situacao]);
 
     useEffect(() => {
         setPatentes(resultNumPatente)
@@ -154,6 +66,23 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <option value="pendente">Pendente</option>
                             <option value="regiSoftware">Registro de Software</option>
                         </Select>
+                        <LoadingCard 
+                            setRemoveLoading={setRemoveLoading}
+                            setIsLoading={setIsLoading}
+                            setPatentes={setPatentes}
+                            situacao={situacao}
+                            activePage={activePage}
+                            setTotPatentes={setTotPatentes}
+                        />
+                        <LoadingCardICT
+                            activePage={activePage}
+                            ictSelected={ictSelected}
+                            setRemoveLoading={setRemoveLoading}
+                            situacao={situacao}
+                            setTotPatentes={setTotPatentes}
+                            setPatentes={setPatentes}
+                            setIsLoading={setIsLoading}
+                        />
                         <SelectIPC
                             situacao={situacao}
                             ictSelected={ictSelected}
