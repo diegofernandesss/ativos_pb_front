@@ -24,6 +24,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const [codigoIpcSelected, setCodigoIpcSelected] = useState("")
     const [codigosIpc, setCodigosIpc] = useState([])
     const[loadingPatentDetails, setLoadingPatentDetails] = useState(false)
+    const[handleClickSelected, setHandleClickSelected] = useState("")
 
     const isFirstRender = useRef(true);
 
@@ -31,7 +32,9 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         setActivePage(pageNumber);
         window.scrollTo(0, 0);
     }
+
     const handleClickDetails = (cardID) => {
+        setHandleClickSelected(cardID)
         setLoadingPatentDetails(true)
         api.get(`patente_concedida/${cardID}`)
         .then((resp) => {
@@ -296,14 +299,13 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                      
 
                                         <div>
-                                            {!loadingPatentDetails && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido)}>
+                                            {(!loadingPatentDetails || handleClickSelected !== patente.numero_pedido) && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido)}>
                                                     <DetailsText>Mais Detalhes</DetailsText>
                                                     <ArrowIcon />
                                             </DetailsButton>}
                                         </div>
 
-
-                                        {loadingPatentDetails && <div> 
+                                        {loadingPatentDetails && handleClickSelected === patente.numero_pedido && <div> 
                                             <LoadingButton>
                                                     <Loadingtext>Processando... </Loadingtext>
                                                     <LoadAnimate />
