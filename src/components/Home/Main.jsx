@@ -162,6 +162,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             setRemoveLoading={setRemoveLoading}
                             setIsLoading={setIsLoading}
                             isFirstRender={isFirstRender}
+                            activePage={activePage}
                         />
                     </div>
                     

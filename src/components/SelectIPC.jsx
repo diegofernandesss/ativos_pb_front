@@ -2,13 +2,15 @@ import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { Select } from './Home/MainCss';
 
-export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, setRemoveLoading, setIsLoading, isFirstRender }) => {
+export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, setRemoveLoading, setIsLoading, isFirstRender, activePage }) => {
     const [secoes, setSecoes] = useState([]);
     const [subSecoes, setSubSecoes] = useState([]);
     const [codigosIpc, setCodigosIpc] = useState([]);
     const [secaoSelected, setSecaoSelected] = useState(0);
     const [subSecaoSelected, setSubSecaoSelected] = useState(0);
     const [codigoIpcSelected, setCodigoIpcSelected] = useState("");
+
+    const max_items = 6
 
     const ChangeSecao = (e) => {
         setSecaoSelected(e.target.value)
@@ -47,14 +49,14 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
         setRemoveLoading(false);
         setIsLoading(true);
         
-        api.get(`patentes_concedidas/classificacao_ipc/cod_subsecao/${subSecaoSelected}`)
+        api.get(`patentes_concedidas/classificacao_ipc/cod_subsecao/${subSecaoSelected}?page=${activePage}&limit=${max_items}`)
         .then((resp) => {
             setPatentes(resp.data.patentes)
             setTotPatentes(resp.data.number_patentes)
             setRemoveLoading(true);
             setIsLoading(false);
         })
-    }, [isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes, subSecaoSelected])
+    }, [activePage, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes, subSecaoSelected])
 
     useEffect(() => {
         if (isFirstRender.current) {
@@ -64,15 +66,15 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
 
         setRemoveLoading(false);
         setIsLoading(true);
-        api.get(`patentes_concedidas/ipc/${codigoIpcSelected}`)
+        api.get(`patentes_concedidas/ipc/${codigoIpcSelected}?page=${activePage}&limit=${max_items}`)
         .then((resp) => {
-            setPatentes(resp.data.patentesFiltro)
+            setPatentes(resp.data.patentes)
             setTotPatentes(resp.data.number_patentes)
             setRemoveLoading(true);
             setIsLoading(false);
         })
         .catch(() => {})
-    }, [codigoIpcSelected, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes])
+    }, [activePage, codigoIpcSelected, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes])
 
     return (
         <>
