@@ -1,11 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { Select } from './Home/MainCss';
+import { useEffect, useState } from 'react';
 import { api } from '../services/api';
+import { Select } from './Home/MainCss';
 
-export const SelectIPC = ({ situacao, ictSelected, secaoSelected, ChangeSecao, subSecaoSelected, ChangeSubSecao, ChangeCodigoIPC }) => {
+export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, setRemoveLoading, setIsLoading, isFirstRender }) => {
     const [secoes, setSecoes] = useState([]);
     const [subSecoes, setSubSecoes] = useState([]);
     const [codigosIpc, setCodigosIpc] = useState([]);
+    const [secaoSelected, setSecaoSelected] = useState(0);
+    const [subSecaoSelected, setSubSecaoSelected] = useState(0);
+    const [codigoIpcSelected, setCodigoIpcSelected] = useState("");
+
+    const ChangeSecao = (e) => {
+        setSecaoSelected(e.target.value)
+    }
+
+    const ChangeSubSecao = (e) => {
+        setSubSecaoSelected(e.target.value)
+    }
+
+    const ChangeCodigoIPC = (e) => {
+        setCodigoIpcSelected(e.target.value)
+    }
 
     useEffect(() => {
         api.get("classificacoes_ipc")
@@ -23,6 +38,41 @@ export const SelectIPC = ({ situacao, ictSelected, secaoSelected, ChangeSecao, s
         api.get(`classificacoes_ipc/codigos_ipc/${subSecaoSelected}`)
         .then((resp) => setCodigosIpc(resp.data));
     }, [subSecaoSelected])
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+        setRemoveLoading(false);
+        setIsLoading(true);
+        
+        api.get(`patentes_concedidas/classificacao_ipc/cod_subsecao/${subSecaoSelected}`)
+        .then((resp) => {
+            setPatentes(resp.data.patentes)
+            setTotPatentes(resp.data.number_patentes)
+            setRemoveLoading(true);
+            setIsLoading(false);
+        })
+    }, [isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes, subSecaoSelected])
+
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false;
+            return;
+        }
+
+        setRemoveLoading(false);
+        setIsLoading(true);
+        api.get(`patentes_concedidas/ipc/${codigoIpcSelected}`)
+        .then((resp) => {
+            setPatentes(resp.data.patentesFiltro)
+            setTotPatentes(resp.data.number_patentes)
+            setRemoveLoading(true);
+            setIsLoading(false);
+        })
+        .catch(() => {})
+    }, [codigoIpcSelected, isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes])
 
     return (
         <>
