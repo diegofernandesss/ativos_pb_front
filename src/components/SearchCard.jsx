@@ -52,10 +52,10 @@ export const SearchCard= ({ situacaoSearch, setRemoveLoading, setResultNumPatent
     return(
         <>
             <SearchInput type="text" placeholder="Digite o número do Pedido" onChange={handleChangeSearch} value={numPatente} /> {/** Entrada de Dados Da Patente */}
-                <SearchButton onClick={handleClickSearch}>
-                    <SearchButtonHighlight /> {/** Efeito do Botão Pesquisar */}
-                    <SearchButtonText>Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
-                </SearchButton>
+            <SearchButton onClick={handleClickSearch}>
+                <SearchButtonHighlight /> {/** Efeito do Botão Pesquisar */}
+                <SearchButtonText>Pesquisar</SearchButtonText> {/** Botão de Pesquisa de Pedido de Patente */}
+            </SearchButton>
         </>
     )
 }

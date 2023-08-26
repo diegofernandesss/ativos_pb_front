@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../services/api';
 import { Select } from './Home/MainCss';
 
-export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, setRemoveLoading, setIsLoading, isFirstRender, activePage }) => {
+export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, setRemoveLoading, setIsLoading, isFirstRender, isFirstRender2, activePage }) => {
     const [secoes, setSecoes] = useState([]);
     const [subSecoes, setSubSecoes] = useState([]);
     const [codigosIpc, setCodigosIpc] = useState([]);
@@ -60,8 +60,8 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
     }, [isFirstRender, setIsLoading, setPatentes, setRemoveLoading, setTotPatentes, subSecaoSelected])
 
     useEffect(() => {
-        if (isFirstRender.current) {
-            isFirstRender.current = false;
+        if (isFirstRender2.current) {
+            isFirstRender2.current = false;
             return;
         }
 

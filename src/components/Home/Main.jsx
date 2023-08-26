@@ -23,6 +23,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const[handleClickSelected, setHandleClickSelected] = useState("")
 
     const isFirstRender = useRef(true);
+    const isFirstRender2 = useRef(true);
 
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
@@ -91,6 +92,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             setRemoveLoading={setRemoveLoading}
                             setIsLoading={setIsLoading}
                             isFirstRender={isFirstRender}
+                            isFirstRender2={isFirstRender2}
                             activePage={activePage}
                         />
                     </div>
