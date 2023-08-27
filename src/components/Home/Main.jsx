@@ -39,8 +39,8 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
         api.get(`patente_concedida/${cardID}`)
         .then((resp) => {
             setLoadingPatentDetails(false);
-            console.log(resp.data)
             navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
+            window.scrollTo(0, 0);
         });
     }
 
