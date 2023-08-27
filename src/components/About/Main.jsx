@@ -35,7 +35,7 @@ const { image, alt } = heroData;
 
 return (
    <>
-   <section className=" text-white py-20 px-6 md:px-12 lg:px-24 xl:px-32 container mx-auto ">
+   <section className=" text-white py-20 px-6  xl:px-40 container mx-auto ">
        <div className="md:flex md:justify-between md:items-center" data-aos="zoom-in-down">
            <div className="md:w-1/2 mb-6 md:mb-0 "  >
                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-red-500">Objetivo</h1>
@@ -54,7 +54,7 @@ return (
    </section>
 
    <section className=" bg-gray-200" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-       <div className=" text-white py-20 px-6 md:px-12 lg:px-24 xl:px-32 container mx-auto ">
+       <div className=" text-white py-20 px-6  xl:px-40 container mx-auto ">
 
        
    <div className="md:flex md:justify-between md:items-center" >

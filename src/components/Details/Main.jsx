@@ -8,7 +8,7 @@ export const Main = () => {
     
     return (
         <>
-            <section className="text-white py-20 px-6 md:px-12 lg:px-24 xl:px-32 container mx-auto" data-aos="fade-up-right">
+            <section className="text-white py-20 px-6 md:px-12 lg:px-40 xl:px-35 container mx-auto " data-aos="fade-up-right">
                     <div className="md:flex md:justify-between md:items-center">
                         <div className="md:w-1/2 mb-6 md:mb-0 ">
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-red-500">{detailsData.numero_pedido}</h1>
