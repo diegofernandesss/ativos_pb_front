@@ -1,14 +1,10 @@
 import { useLocation } from "react-router-dom";
 import dayjs from "dayjs";
-import { useEffect } from "react";
 
 export const Main = () => {
 
     const location = useLocation();
     const { detailsData, situacao } = location.state;
-    useEffect(() => {
-        window.scrollTo(0, 0);
-    },[])
     
     return (
         <>

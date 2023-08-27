@@ -40,18 +40,21 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
             .then((resp) => {
                 setLoadingPatentDetails(false);
                 navigate(`/details/${cardID}`, { state: { detailsData: resp.data, situacao: situacao } });
+                window.scrollTo(0, 0);
             });
         } else if (situacao === "pendente"){
             api.get(`patente_pendente/${cardID}`)
             .then((resp) => {
                 setLoadingPatentDetails(false);
                 navigate(`/details/${cardID}`, { state: { detailsData: resp.data, situacao: situacao } });
+                window.scrollTo(0, 0);
             });
         } else if (situacao === "regiSoftware"){
             api.get(`registro_software/${cardID}`)
             .then((resp) => {
                 setLoadingPatentDetails(false);
                 navigate(`/details/${cardID}`, { state: { detailsData: resp.data.software_registration, situacao: situacao } });
+                window.scrollTo(0, 0);
             });
         }
     }
