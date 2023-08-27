@@ -28,14 +28,17 @@ export const Main = () => {
                                 <p  className="text-lg md:text-xl font-bold text-gray-400 mb-6">{dayjs(detailsData.data_publicacao).format("DD/MM/YYYY")}</p>
 
                                 <h2 className="text-2xl md:text-2xl lg:text-2xl font-bold mb-4 text-slate-500">Classificação IPC:</h2>
-                                <p  className="text-lg md:text-xl font-bold text-gray-400 mb-6">{detailsData.classificacoes_ipc}</p>
+                                {detailsData.classificacoes_ipc && detailsData.classificacoes_ipc.map((ipc, index) => (
+                                    <p key={index} className="text-lg md:text-xl font-bold text-gray-400 mb-6">{ipc}</p>
+                                ))}
 
                                 <h2 className="text-2xl md:text-2xl lg:text-2xl font-bold mb-4 text-slate-500">Resumo:</h2>
                                 <p  className="text-lg md:text-xl text-gray-500 mb-6">{detailsData.resumo}</p>
 
                                 <h2 className="text-2xl md:text-2xl lg:text-2xl font-bold mb-4 text-slate-500">Inventores:</h2>
-                                <p  className="text-lg md:text-xl text-gray-500 mb-6">{detailsData.inventores}</p>
-
+                                {detailsData.inventores && detailsData.inventores.map((inventor, index) => (
+                                    <p key={index} className="text-lg md:text-xl text-gray-500 mb-6">{inventor}</p>
+                                ))}
                             </div>
                         <div className="md:w-1/2 ">
                             <img src="" alt="" className="w-full rounded-lg "/>
