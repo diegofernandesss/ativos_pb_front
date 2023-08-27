@@ -39,19 +39,22 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
             api.get(`patente_concedida/${cardID}`)
             .then((resp) => {
                 setLoadingPatentDetails(false);
-                navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
+                navigate(`/details/${cardID}`, { state: { detailsData: resp.data, situacao: situacao } });
+                window.scrollTo(0, 0);
             });
         } else if (situacao === "pendente"){
             api.get(`patente_pendente/${cardID}`)
             .then((resp) => {
                 setLoadingPatentDetails(false);
-                navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
+                navigate(`/details/${cardID}`, { state: { detailsData: resp.data, situacao: situacao } });
+                window.scrollTo(0, 0);
             });
         } else if (situacao === "regiSoftware"){
             api.get(`registro_software/${cardID}`)
             .then((resp) => {
                 setLoadingPatentDetails(false);
-                navigate(`/details/${cardID}`, { state: { detailsData: resp.data.software_registration } });
+                navigate(`/details/${cardID}`, { state: { detailsData: resp.data.software_registration, situacao: situacao } });
+                window.scrollTo(0, 0);
             });
         }
     }
