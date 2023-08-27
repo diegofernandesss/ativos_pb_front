@@ -35,14 +35,26 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const handleClickDetails = (cardID) => {
         setHandleClickSelected(cardID);
         setLoadingPatentDetails(true);
-        api.get(`patente_concedida/${cardID}`)
-        .then((resp) => {
-            setLoadingPatentDetails(false);
-            navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
-            window.scrollTo(0, 0);
-        });
+        if (situacao === "concedida"){
+            api.get(`patente_concedida/${cardID}`)
+            .then((resp) => {
+                setLoadingPatentDetails(false);
+                navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
+            });
+        } else if (situacao === "pendente"){
+            api.get(`patente_pendente/${cardID}`)
+            .then((resp) => {
+                setLoadingPatentDetails(false);
+                navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
+            });
+        } else if (situacao === "regiSoftware"){
+            api.get(`registro_software/${cardID}`)
+            .then((resp) => {
+                setLoadingPatentDetails(false);
+                navigate(`/details/${cardID}`, { state: { detailsData: resp.data.software_registration } });
+            });
+        }
     }
-
 
     const ChangeSituacao = (e) => {
         setSituacao(e.target.value)
