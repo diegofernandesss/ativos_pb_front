@@ -12,6 +12,7 @@ import { Container, MainContainer, Select, Title, QueryNotFound,
          LoadingButton, Loadingtext, LoadAnimate, 
          DetailsButton, DetailsText, ArrowIcon, PageItem
 } from './MainCss';
+import { useNavigate } from 'react-router-dom';
 
 export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLoading, setSituacaoSearch }) => {
     const [patentes, setPatentes] = useState([])
@@ -24,21 +25,25 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
 
     const isFirstRender = useRef(true);
     const isFirstRender2 = useRef(true);
+    const navigate = useNavigate();
 
     const handlePageChange = (pageNumber) => {
         setActivePage(pageNumber);
+        
         window.scrollTo(0, 0);
     }
 
     const handleClickDetails = (cardID) => {
-        setHandleClickSelected(cardID)
-        setLoadingPatentDetails(true)
+        setHandleClickSelected(cardID);
+        setLoadingPatentDetails(true);
         api.get(`patente_concedida/${cardID}`)
         .then((resp) => {
-            setLoadingPatentDetails(false)
-            console.log(resp.data);
-        })
+            setLoadingPatentDetails(false);
+            console.log(resp.data)
+            navigate(`/details/${cardID}`, { state: { detailsData: resp.data } });
+        });
     }
+
 
     const ChangeSituacao = (e) => {
         setSituacao(e.target.value)
