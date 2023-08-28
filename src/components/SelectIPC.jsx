@@ -31,9 +31,13 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
         })
     }, [])
 
+
     useEffect(() => {
         api.get(`classificacoes_ipc/sub_secao/${secaoSelected}`)
-        .then((resp) => setSubSecoes(resp.data))
+        .then((resp) =>{
+            setSubSecoes(resp.data)
+            setCodigosIpc([])
+        })
     }, [secaoSelected])
 
     useEffect(() => {
@@ -46,6 +50,9 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
             isFirstRender.current = false;
             return;
         }
+
+        if(subSecaoSelected === "subSecao") return;
+
         setRemoveLoading(false);
         setIsLoading(true);
         
@@ -64,6 +71,7 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
             isFirstRender2.current = false;
             return;
         }
+        if(codigoIpcSelected ==="codigoIPC") return;
 
         setRemoveLoading(false);
         setIsLoading(true);
