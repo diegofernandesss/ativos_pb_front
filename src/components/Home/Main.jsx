@@ -62,6 +62,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     const ChangeSituacao = (e) => {
         setSituacao(e.target.value)
         setSituacaoSearch(e.target.value)
+        setActivePage(1);
     }
 
     useEffect(() => {
@@ -69,7 +70,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
     }, [ictSelected, situacao]);
 
     const max_items = 6
-
     useEffect(() => {
         setPatentes(resultNumPatente)
         setTotPatentes(1)  
@@ -125,6 +125,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             <QueryNotFound>CONSULTA NÃO ENCONTRADA</QueryNotFound> 
                         </NotFoundContainer>
                     )}
+
                     {removeLoading && <GridCards> 
                         {patentes.length > 0 && patentes !== [] &&
                             patentes.map((patente, index) => {  
