@@ -1,78 +1,57 @@
 import tw from 'tailwind-styled-components';
 
-export const MainContainer = tw.main`
-`;
-
-export const MainSection = tw.section`
-    bg-gradient-to-r 
-    py-16
-`;
-
-export const Container = tw.div`
+export const SectionContainer = tw.section`
+    text-white 
+    py-20 
+    px-6  
+    xl:px-40 
     container 
-    mx-auto 
-    px-4 
-    items-center 
-    justify-between 
-    max-w-screen-xl 
-    pt-7 
-    pb-8
-`;
-
-export const TextContainer = tw.div`
-    md:w-1/2 
-    text-center 
-    xl:text-left
-`;
-
-export const StyledH1 = tw.h1`
-    text-2xl 
-    md:text-4xl 
-    font-bold 
-    text-red-500 
-    mb-4
-`;
-
-export const StyledP = tw.p`
-    text-sm 
-    md:text-xl 
-    text-gray-800 
-    mb-8 lead 
-    xl:max-w-[380px] 
-    lg:mb-12 
-    text-center 
-    md:text-justify
-`;
-
-export const ImageContainer = tw.div`
-    md:w-1/3 
-    grid grid-cols-1
     mx-auto
-    md:gap-4
+`;
+
+export const SectionContainerTeam = tw.section`
+    bg-gray-200
 `;
 
 export const FlexContainer = tw.div`
-    container 
-    flex 
-    flex-col 
-    py-4 
-    mx-auto  
-    md:h-128 
-    md:py-16 
-    md:flex-row 
+    md:flex 
+    md:justify-between 
     md:items-center
 `;
 
-export const StyledImg = tw.img`
-    rounded-lg 
-    max-w-full 
-    md:max-w-[320px]
+export const HalfWidthContainerWithMargin = tw.div`
+    md:w-1/2 
+    mb-6 
+    md:mb-0
 `;
 
-export const GridContainer = tw.div`
-    md:w-1/3 
-    grid grid-cols-2 
-    gap-4
-    mx-auto
-    md:gap-4
+
+export const Title = tw.h1`
+    text-4xl 
+    md:text-5xl 
+    lg:text-6xl 
+    font-bold 
+    mb-4 
+    text-red-500
+`;
+
+export const Paragraph = tw.p`
+    text-lg 
+    md:text-xl 
+    text-gray-500 
+    mb-6"
+`;
+
+export const PositionImage = tw.div`
+    md:w-1/2
+`;  
+
+
+export const Background = tw.div`
+    bg-gray-200
+`;
+
+export const StyledImg = tw.img`
+    w-full 
+    rounded-lg 
 `;

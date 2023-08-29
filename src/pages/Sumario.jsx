@@ -5,9 +5,9 @@ export const Sumario = () => {
 
     return (
         <>
-        <Layout>
-            <Main />
-        </Layout>
+            <Layout>
+                <Main />
+            </Layout>
         </>
     )
 }
