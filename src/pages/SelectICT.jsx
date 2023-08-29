@@ -1,6 +1,5 @@
-import { useState } from "react"
-import { StyledSelect } from "./Home/HeaderCss"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { StyledSelect } from "../components/Home/HeaderCss"
 import { api } from "../services/api"
 
 export const SelectICT = ({ setIctSelectedMain }) => {
