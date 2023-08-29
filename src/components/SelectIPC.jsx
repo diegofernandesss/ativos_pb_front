@@ -31,7 +31,6 @@ export const SelectIPC = ({ situacao, ictSelected, setPatentes, setTotPatentes, 
         })
     }, [])
 
-
     useEffect(() => {
         api.get(`classificacoes_ipc/sub_secao/${secaoSelected}`)
         .then((resp) =>{

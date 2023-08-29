@@ -1,7 +1,12 @@
-import { HeaderComponent, HeaderBackground, HeaderContainer, SearchBarContainer, 
-        SelectContainer, BlockContainer} from './HeaderCss'
-import { SearchCard } from '../SearchCard'
-import { SelectICT } from '../SelectICT'
+import { SelectICT } from '../../pages/SelectICT';
+import { SearchCard } from '../SearchCard';
+import {
+    BlockContainer,
+    HeaderBackground,
+    HeaderComponent,
+    HeaderContainer, SearchBarContainer,
+    SelectContainer
+} from './HeaderCss';
 
 export const Header = ({ setIctSelectedMain, setResultNumPatente, setRemoveLoading, situacaoSearch }) =>{
     return(
