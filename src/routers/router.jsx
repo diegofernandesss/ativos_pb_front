@@ -6,8 +6,8 @@ export default function MainRouters() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/details/:id" element={<Details/>}/>
-      <Route path="/sobre" element={<About />} />
-      <Route path="/sumario" element={<Sumario />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/summary" element={<Sumario />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );

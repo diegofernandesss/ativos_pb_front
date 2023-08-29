@@ -18,8 +18,8 @@ export const NavBar = () => {
 
   const Links = [
     {name: "Página Inicial", link:"/"},
-    {name: "Sumário", link:"/sumario"},
-    {name: "Sobre", link:"/sobre"},
+    {name: "Sumário", link:"/summary"},
+    {name: "Sobre", link:"/about"},
   ]
 
   const [menuOpen, setMenuOpen] = useState(false);
