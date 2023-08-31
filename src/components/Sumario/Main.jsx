@@ -35,7 +35,7 @@ export const Main = () => {
     ];
     return (
         <>
-            <ContainerSection>
+            <ContainerSection data-aos="fade-up-right">
                 <BorderSectioSummary >
                     <SectionSummaryTitle>Sumário</SectionSummaryTitle> {/** Título */}
                 </BorderSectioSummary >
