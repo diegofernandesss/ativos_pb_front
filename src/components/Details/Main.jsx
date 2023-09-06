@@ -9,7 +9,6 @@ export const Main = () => {
     const { detailsData, situacao } = location.state;
 
     const { image, alt } = lampadaImg;
-    console.log(detailsData)
 
     
     return (
