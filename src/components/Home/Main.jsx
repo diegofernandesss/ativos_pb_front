@@ -127,7 +127,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                     )}
 
                     {removeLoading && <GridCards> 
-                        {patentes.length > 0 && patentes !== [] &&
+                        {patentes.length > 0 &&
                             patentes.map((patente, index) => {  
                                     return (
                                         <Card key={index} className="border-red-500" data-aos="fade-up-right"> 
@@ -141,7 +141,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                         {situacao === "pendente" ? <CardNumber>{dayjs(patente.data_protocolo).format("DD/MM/YYYY")}</CardNumber> : ""}
 
                                         <CardText>Número Do Pedido:</CardText> 
-                                        <CardNumber>{patente.numero_pedido}</CardNumber>
+                                        <CardNumber>{patente.numero_pedido ? patente.numero_pedido: patente.software_registration.numero_pedido}</CardNumber>
 
                                         {situacao !== "regiSoftware" ? <CardText>Depositante:</CardText> : <CardText>Titulares:</CardText>}
                                         {
@@ -163,7 +163,7 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                      
 
                                         <div>
-                                            {(!loadingPatentDetails || handleClickSelected !== patente.numero_pedido) && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido)}>
+                                            {(!loadingPatentDetails || handleClickSelected !== patente.numero_pedido) && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido ? patente.numero_pedido : patente.software_registration.numero_pedido)}>
                                                     <DetailsText>Mais Detalhes</DetailsText>
                                                     <ArrowIcon />
                                             </DetailsButton>}
