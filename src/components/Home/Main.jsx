@@ -163,16 +163,16 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                                      
 
                                         <div>
-                                            {(!loadingPatentDetails || handleClickSelected !== patente.numero_pedido) && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido ? patente.numero_pedido : patente.software_registration.numero_pedido)}>
-                                                    <DetailsText>Mais Detalhes</DetailsText>
-                                                    <ArrowIcon />
+                                            {(!loadingPatentDetails || handleClickSelected !== (patente.numero_pedido ? patente.numero_pedido : patente.software_registration?.numero_pedido)) && <DetailsButton onClick={() => handleClickDetails(patente.numero_pedido ? patente.numero_pedido : patente.software_registration?.numero_pedido)}>
+                                                <DetailsText>Mais Detalhes</DetailsText>
+                                                <ArrowIcon />
                                             </DetailsButton>}
                                         </div>
 
-                                        {loadingPatentDetails && handleClickSelected === patente.numero_pedido && <div> 
+                                        {loadingPatentDetails && handleClickSelected === (patente.numero_pedido ? patente.numero_pedido : patente.software_registration?.numero_pedido) && <div> 
                                             <LoadingButton>
-                                                    <Loadingtext>Processando... </Loadingtext>
-                                                    <LoadAnimate />
+                                                <Loadingtext>Processando... </Loadingtext>
+                                                <LoadAnimate />
                                             </LoadingButton>
                                         </div>} 
                                     </Card>
@@ -191,7 +191,6 @@ export const Main = ({ ictSelected, resultNumPatente, removeLoading, setRemoveLo
                             itemClass={PageItem}
                             activeClass='bg-red-500 text-white'
                         />
-                        
                 </MainContainer>
             </Container>
         </>
